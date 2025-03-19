@@ -1,8 +1,11 @@
 package API
 
 import com.example.login.models.login.LoginResponse
+import com.example.login.models.produtos.Produto
+import com.example.login.models.user.User
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.Query
 
 interface ApiService {
@@ -11,4 +14,10 @@ interface ApiService {
         @Query("usuario") usuario: String,
         @Query("senha") senha: String
     ): Call<List<LoginResponse>>
+
+    @Header("Authorization")
+    @GET("/users/all")
+
+    fun getAllUsers(@Header("Authorization") String authHeader): Call<List<User>>
+
 }

@@ -17,6 +17,7 @@
         <activity
             android:name=".LoginActivity"
             android:exported="false" />
+
         <!-- Habilitando ClearText -->
         <activity
             android:name=".MainActivity"
@@ -27,6 +28,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".VetListActivity" android:exported="false" />
     </application>
 
 </manifest>

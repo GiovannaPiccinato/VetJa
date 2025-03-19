@@ -9,9 +9,6 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.login.models.login.LoginResponse
 import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
-import retrofit2.http.GET
-import retrofit2.http.Query
-import com.example.login.models.*
 import com.example.login.models.login.LoginRequest
 import retrofit2.http.Body
 import retrofit2.http.POST
@@ -41,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString().trim()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.135.111.41:8000")
+            .baseUrl("http://10.135.111.43:8000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -57,7 +54,9 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful && response.body() != null) {
                     val loginResponses = response.body()!!
                     if (loginResponses.isNotEmpty() && loginResponses.last().status) {
-                        val intent = Intent(this@LoginActivity, ProdutosActivity::class.java)
+                        loginResponses.last().token
+                        val intent = Intent(this@LoginActivity, VetListActivity::class.java)
+                        intent.putExtra("token", loginResponses.last().token)
                         startActivity(intent)
                         finish()
                     } else {
