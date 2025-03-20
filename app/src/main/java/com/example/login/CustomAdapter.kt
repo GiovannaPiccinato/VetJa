@@ -25,9 +25,9 @@ class CustomAdapter(private val dataSet: List<User>) :
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
         val user = dataSet[position]
-        viewHolder.nome.text = user.usuario
+        viewHolder.nome.text = user.nome
         viewHolder.email.text = user.email
-        viewHolder.id.text = user.id
+        viewHolder.id.text = user.idCliente
     }
 
     override fun getItemCount() = dataSet.size
