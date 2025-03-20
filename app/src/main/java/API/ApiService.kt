@@ -15,9 +15,8 @@ interface ApiService {
         @Query("senha") senha: String
     ): Call<List<LoginResponse>>
 
-    @Header("Authorization")
-    @GET("/users/all")
 
-    fun getAllUsers(@Header("Authorization") String authHeader): Call<List<User>>
+    @GET("/users/all")
+    fun getAllUsers(): Call<List<User>>
 
 }
