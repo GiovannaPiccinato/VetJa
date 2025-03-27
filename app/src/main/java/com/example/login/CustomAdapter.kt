@@ -13,7 +13,6 @@ class CustomAdapter(private val dataSet: List<User>) :
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val nome: TextView = view.findViewById(R.id.nome)
         val email: TextView = view.findViewById(R.id.email)
-        val id: TextView = view.findViewById(R.id.idVet)
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -27,7 +26,6 @@ class CustomAdapter(private val dataSet: List<User>) :
         val user = dataSet[position]
         viewHolder.nome.text = user.nome
         viewHolder.email.text = user.email
-        viewHolder.id.text = user.idCliente
     }
 
     override fun getItemCount() = dataSet.size

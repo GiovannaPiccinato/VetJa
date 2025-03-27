@@ -44,7 +44,7 @@ class VetListActivity : AppCompatActivity() {
 
         // Configuração do Retrofit
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://10.135.111.37:8000")
+            .baseUrl("http://192.168.15.17:8000")
             .addConverterFactory(GsonConverterFactory.create())
             .client(okHttpClient)
             .build()

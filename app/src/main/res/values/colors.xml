@@ -5,4 +5,5 @@
     <color name="dark_blue">#3160A4</color>
     <color name="blue">#537FBE</color>
     <color name="grey">#AAAAAA</color>
+    <color name="light_grey">#eaeaea</color>
 </resources>

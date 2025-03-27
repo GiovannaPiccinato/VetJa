@@ -49,6 +49,8 @@ dependencies {
     implementation(libs.converter.gson)
     implementation(libs.converter.scalars)
     implementation (libs.androidx.recyclerview)
+    implementation (libs.androidx.cardview)
+
     //Interceptor
     implementation (libs.logging.interceptor)
     implementation (libs.okhttp)
