@@ -48,7 +48,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.converter.gson)
     implementation(libs.converter.scalars)
-    implementation ("androidx.recyclerview:recyclerview:1.4.0")
+    implementation (libs.androidx.recyclerview)
     //Interceptor
     implementation (libs.logging.interceptor)
     implementation (libs.okhttp)
