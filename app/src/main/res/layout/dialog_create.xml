@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingHorizontal="12dp"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/dialog_title"
+        android:layout_width="match_parent"
+        android:textSize="30sp"
+        android:paddingBottom="12dp"
+        android:layout_height="wrap_content"
+        android:text="@string/cadastrar_atualizar_usuario"
+        android:textStyle="bold"/>
+
+    <EditText
+        android:id="@+id/dialog_name"
+        android:layout_width="match_parent"
+        android:autofillHints=""
+        android:hint="@string/nome"
+        android:inputType="text"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/dialog_email"
+        android:layout_width="match_parent"
+        android:autofillHints=""
+        android:inputType="textEmailAddress"
+        android:hint="@string/email"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/dialog_pass"
+        android:layout_width="match_parent"
+        android:autofillHints=""
+        android:inputType="text"
+        android:hint="Senha"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/dialog_cpf"
+        android:autofillHints=""
+        android:inputType="text"
+        android:layout_width="match_parent"
+        android:hint="@string/cpf"
+        android:layout_height="wrap_content" />
+    <EditText
+        android:id="@+id/dialog_cliente"
+        android:layout_width="match_parent"
+        android:autofillHints=""
+        android:inputType="text"
+        android:hint="Id"
+        android:focusable="false"
+        android:clickable="false"
+        android:layout_height="wrap_content" />
+
+    <Button
+
+        android:id="@+id/dialog_save_btn"
+        android:textColor="@color/white"
+        android:text="@string/salvar"
+        android:backgroundTint="@color/dark_blue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

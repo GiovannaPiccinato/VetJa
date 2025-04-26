@@ -47,20 +47,44 @@
         android:id="@+id/imageView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/icon_vet"
+        android:layout_marginStart="8dp"
 
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="4dp" />
+        android:layout_marginTop="4dp"
+        android:contentDescription="@string/icon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/icon_vet"
+        tools:ignore="MissingConstraints" />
 
     <ImageView
         android:id="@+id/imageView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
+        android:layout_marginBottom="12dp"
+        android:contentDescription="@string/favorite"
+        app:layout_constraintBottom_toBottomOf="@+id/deleteVet"
         app:layout_constraintEnd_toEndOf="parent"
         app:srcCompat="@drawable/star_empty"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteY="16dp" />
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/editarVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:text="Editar"
+        app:layout_constraintBaseline_toBaselineOf="@+id/deleteVet"
+        app:layout_constraintEnd_toStartOf="@+id/deleteVet" />
+
+    <Button
+        android:id="@+id/deleteVet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:layout_marginEnd="5dp"
+        android:text="Excluir"
+        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

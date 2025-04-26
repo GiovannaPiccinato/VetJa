@@ -15,8 +15,6 @@ import retrofit2.http.POST
 
 
 class LoginActivity : AppCompatActivity() {
-    private val user = "teste"
-    private val pass = "teste"
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
 
@@ -38,7 +36,7 @@ class LoginActivity : AppCompatActivity() {
         val password = passwordEditText.text.toString().trim()
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://yourIp:8000")
+            .baseUrl("http://192.168.15.17:8000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
