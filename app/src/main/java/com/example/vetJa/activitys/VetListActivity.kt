@@ -1,14 +1,14 @@
-package com.example.login
+package com.example.vetJa.activitys
 
-import API.ApiService
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.login.AddDialogFragment.OnUserCreatedListener
-import com.example.login.models.user.User
+import com.example.vetJa.API.ApiService
+import com.example.vetJa.fragments.AddDialogFragment
+import com.example.vetJa.R
+import com.example.vetJa.models.user.User
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -45,11 +45,11 @@ class VetListActivity : AppCompatActivity(), AddDialogFragment.OnUserCreatedList
             .build()
 
         val apiService = retrofit.create(ApiService::class.java)
-        apiService.getAllUsers().enqueue(object : Callback<List<User>>  {
+        apiService.getAllUsers().enqueue(object : Callback<List<User>> {
             override fun onResponse(call: Call<List<User>>, response: Response<List<User>>) {
                 if (response.isSuccessful) {
                     val users = response.body() ?: emptyList()
-                    val listener: OnUserCreatedListener = this@VetListActivity;
+                    val listener: AddDialogFragment.OnUserCreatedListener = this@VetListActivity;
                     adapter = CustomAdapter(users, supportFragmentManager, this@VetListActivity)
                     recyclerView.adapter = adapter
                 } else {

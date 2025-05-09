@@ -1,6 +1,6 @@
-package com.example.login
+package com.example.vetJa.activitys
 
-import API.ApiService
+import com.example.vetJa.API.ApiService
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -12,14 +12,16 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat.recreate
 import androidx.recyclerview.widget.RecyclerView
-import com.example.login.models.user.User
+import com.example.vetJa.models.user.User
 import androidx.fragment.app.FragmentManager
-import com.example.login.AddDialogFragment.OnUserCreatedListener
-import com.example.login.models.login.LoginResponse
-import com.example.login.models.user.UserDTO
+import com.example.vetJa.fragments.AddDialogFragment
+import com.example.vetJa.R
+import com.example.vetJa.models.login.LoginResponse
+import com.example.vetJa.models.user.UserDTO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -84,31 +86,31 @@ class CustomAdapter(private val dataSet: List<User>, private val fragmentManager
     }
 
     private fun deleteVet(viewHolder: ViewHolder) {
-        val apiService = retrofit.create(ApiService::class.java);
-
-        val call = apiService.deleteUser(UserDTO(null, viewHolder.email.text.toString(), null, null, null));
-
-        call.enqueue(object : retrofit2.Callback<LoginResponse> {
-            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
-
-                if (response.isSuccessful && response.body() != null) {
-                    val loginResponses = response.body()!!
-                    if (loginResponses.status) {
-                        Toast.makeText(viewHolder.itemView.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
-
-                        recreate(activity);
-                    } else {
-                        Toast.makeText(viewHolder.itemView.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
-                    }
-                } else {
-                    Toast.makeText(viewHolder.itemView.context, "Erro ao criar usuário!", Toast.LENGTH_LONG).show()
-                }
-            }
-
-            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
-                Toast.makeText(viewHolder.itemView.context, "Erro: ${t.message}", Toast.LENGTH_LONG).show()
-            }
-        })
+//        val apiService = retrofit.create(ApiService::class.java);
+//
+//        val call = apiService.deleteUser(UserDTO(null, viewHolder.email.text.toString(), null, null, null));
+//
+//        call.enqueue(object : Callback<LoginResponse> {
+//            override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
+//
+//                if (response.isSuccessful && response.body() != null) {
+//                    val loginResponses = response.body()!!
+//                    if (loginResponses.status) {
+//                        Toast.makeText(viewHolder.itemView.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
+//
+//                        recreate(activity);
+//                    } else {
+//                        Toast.makeText(viewHolder.itemView.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
+//                    }
+//                } else {
+//                    Toast.makeText(viewHolder.itemView.context, "Erro ao criar usuário!", Toast.LENGTH_LONG).show()
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
+//                Toast.makeText(viewHolder.itemView.context, "Erro: ${t.message}", Toast.LENGTH_LONG).show()
+//            }
+//        })
     }
 
     override fun getItemCount() = dataSet.size

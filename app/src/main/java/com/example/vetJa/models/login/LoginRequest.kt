@@ -1,4 +1,4 @@
-package com.example.login.models.login
+package com.example.vetJa.models.login
 
 data class LoginRequest(
     val email: String,

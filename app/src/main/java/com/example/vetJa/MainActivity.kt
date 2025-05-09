@@ -1,0 +1,27 @@
+package com.example.vetJa
+
+import android.content.Intent
+import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
+import com.example.vetJa.activitys.LoginActivity
+
+
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
+
+        if (sharedPreferences.contains("user_token")) {
+//            val intent = Intent(this, HomeActivity::class.java)
+//            startActivity(intent)
+//            finish()
+        } else {
+            val intent = Intent(this, LoginActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
+    }
+
+}

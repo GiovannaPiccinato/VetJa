@@ -1,4 +1,4 @@
-package com.example.login.models.user
+package com.example.vetJa.models.user
 
 data class UserDTO(
     val nome: String?,

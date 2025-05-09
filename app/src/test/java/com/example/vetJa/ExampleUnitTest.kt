@@ -1,4 +1,4 @@
-package com.example.login
+package com.example.vetJa
 
 import org.junit.Test
 

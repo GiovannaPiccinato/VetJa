@@ -4,11 +4,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.login"
+    namespace = "com.example.vetJa"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.example.login"
+        applicationId = "com.example.vetJa"
         minSdk = 24
         targetSdk = 35
         versionCode = 1

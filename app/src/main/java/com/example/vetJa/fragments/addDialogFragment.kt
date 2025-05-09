@@ -1,9 +1,7 @@
-package com.example.login
+package com.example.vetJa.fragments
 
-import API.ApiService
+import com.example.vetJa.API.ApiService
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -13,13 +11,14 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.DialogFragment
-import com.example.login.models.login.LoginResponse
-import com.example.login.models.user.User
-import com.example.login.models.user.UserDTO
-import okhttp3.Callback
+import com.example.vetJa.R
+import com.example.vetJa.models.login.LoginResponse
+import com.example.vetJa.models.user.User
+import com.example.vetJa.models.user.UserDTO
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Call
+import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -52,7 +51,7 @@ public class AddDialogFragment : DialogFragment() {
 
             val call = apiService.getUserByEmail(dto)
 
-            call.enqueue(object : retrofit2.Callback<User> {
+            call.enqueue(object : Callback<User> {
                 override fun onResponse(call: Call<User>, response: Response<User>) {
 
                     if (response.isSuccessful && response.body() != null) {
@@ -128,22 +127,22 @@ public class AddDialogFragment : DialogFragment() {
 
         val call = apiService.createUser(dto);
 
-        call.enqueue(object : retrofit2.Callback<LoginResponse> {
+        call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
 
-                if (response.isSuccessful && response.body() != null) {
-                    val loginResponses = response.body()!!
-                    if (loginResponses.status) {
-                        Toast.makeText(view.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
-
-                        listener?.onUserCreated()
-                        dismiss()
-                    } else {
-                        Toast.makeText(view.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
-                    }
-                } else {
-                    Toast.makeText(view.context, "Erro ao criar usuário!", Toast.LENGTH_LONG).show()
-                }
+//                if (response.isSuccessful && response.body() != null) {
+//                    val loginResponses = response.body()!!
+//                    if (loginResponses.status) {
+//                        Toast.makeText(view.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
+//
+//                        listener?.onUserCreated()
+//                        dismiss()
+//                    } else {
+//                        Toast.makeText(view.context, loginResponses.message.toString(), Toast.LENGTH_LONG).show()
+//                    }
+//                } else {
+//                    Toast.makeText(view.context, "Erro ao criar usuário!", Toast.LENGTH_LONG).show()
+//                }
             }
 
             override fun onFailure(call: Call<LoginResponse>, t: Throwable) {
@@ -165,7 +164,7 @@ public class AddDialogFragment : DialogFragment() {
 
         val call = apiService.updateUser(dto);
 
-        call.enqueue(object : retrofit2.Callback<User> {
+        call.enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
 
                 if (response.isSuccessful && response.body() != null) {
