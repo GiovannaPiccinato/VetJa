@@ -12,7 +12,6 @@ import androidx.core.content.edit
 import com.example.vetJa.R
 import com.example.vetJa.models.login.LoginResponse
 import retrofit2.*
-import retrofit2.converter.gson.GsonConverterFactory
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
@@ -66,8 +65,8 @@ class LoginActivity : AppCompatActivity() {
 
                         toast("Olá, ${loginResponse.user!!.nome}, Seja bem-vindo(a)!", this@LoginActivity)
 
-//                        startActivity(Intent(this, HomeActivity::class.java))
-//                        finish()
+                        startActivity(Intent(this@LoginActivity, IndexActivity::class.java))
+                        finish()
 
                     } else {
                         Toast.makeText(this@LoginActivity, "Usuário ou senha inválidos", Toast.LENGTH_LONG).show()
