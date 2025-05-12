@@ -12,10 +12,11 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".activitys.LoginActivity"
+            android:name=".activitys.IndexActivity"
             android:exported="false" />
-
-        <!-- Habilitando ClearText -->
+        <activity
+            android:name=".activitys.LoginActivity"
+            android:exported="false" /> <!-- Habilitando ClearText -->
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -25,7 +26,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activitys.VetListActivity" android:exported="false" />
+        <activity
+            android:name=".activitys.VetListActivity"
+            android:exported="false" />
     </application>
 
 </manifest>
