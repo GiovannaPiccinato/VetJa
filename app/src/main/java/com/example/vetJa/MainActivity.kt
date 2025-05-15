@@ -3,6 +3,7 @@ package com.example.vetJa
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import com.example.vetJa.activitys.IndexActivity
 import com.example.vetJa.activitys.LoginActivity
 
 
@@ -14,9 +15,8 @@ class MainActivity : AppCompatActivity() {
         val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
 
         if (sharedPreferences.contains("user_token")) {
-//            val intent = Intent(this, HomeActivity::class.java)
-//            startActivity(intent)
-//            finish()
+            startActivity(Intent(this, IndexActivity::class.java))
+            finish()
         } else {
             val intent = Intent(this, LoginActivity::class.java)
             startActivity(intent)
