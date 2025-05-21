@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vetJa.API.ApiService
 import com.example.vetJa.fragments.AddDialogFragment
 import com.example.vetJa.R
+import com.example.vetJa.adapter.CustomAdapter
 import com.example.vetJa.models.user.User
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import okhttp3.OkHttpClient

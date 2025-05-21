@@ -1,5 +1,6 @@
 package com.example.vetJa.API
 
+import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.models.login.LoginResponse
 import com.example.vetJa.models.user.User
@@ -32,5 +33,8 @@ interface ApiService {
 
     @POST("/users/delete")
     fun deleteUser(@Body dto: UserDTO): Call<LoginResponse>;
+
+    @GET("/pets/all")
+    fun getListPets(): Call<List<PetDTO>>
 
 }

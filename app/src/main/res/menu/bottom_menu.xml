@@ -11,5 +11,9 @@
         android:icon="@android:drawable/star_on"
         android:title="@string/configuracao"
         />
+    <item
+        android:id="@+id/petsList"
+        android:icon="@drawable/menu_pet"
+        android:title="Meus Pets" />
 
 </menu>
