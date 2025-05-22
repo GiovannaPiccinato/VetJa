@@ -18,7 +18,7 @@ interface ApiService {
     fun getAllUsers(): Call<List<User>>
 
     @GET("/users/user")
-    fun getUserById(id: String): Call<User>
+    fun getUserById(): Call<User>
 
     @GET("/services/all")
     fun getAllServices(): Call<List<Service>>
@@ -33,9 +33,9 @@ interface ApiService {
     fun login(@Body dto: LoginRequest): Call<LoginResponse>
 
     @PUT("/users/user")
-    fun updateUser(@Body dto: UserDTO, @Header("Authorization") token: String): Call<User>
+    fun updateUser(@Body dto: UserDTO): Call<User>
 
     @POST("/users/delete")
-    fun deleteUser(@Body dto: UserDTO, @Header("Authorization") token: String): Call<LoginResponse>;
+    fun deleteUser(@Body dto: UserDTO): Call<LoginResponse>;
 
 }

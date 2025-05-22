@@ -43,7 +43,7 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
         Log.d("HomeFragment", "RecyclerView e Adapter configurados")
 
-        val apiService = RetrofitClient(requireContext()).api
+        val apiService = RetrofitClient(requireContext().applicationContext).api
         Log.d("HomeFragment", "Iniciando chamada para getAllServices()")
 
         apiService.getAllServices().enqueue(object : Callback<List<Service>> {

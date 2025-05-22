@@ -12,16 +12,16 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
+//        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
+//        val token = sharedPreferences.getString("user_token", "teste")
+//
+//        if (!token.isNullOrEmpty()) {
+//            startActivity(Intent(this, IndexActivity::class.java))
+//        } else {
+            startActivity(Intent(this, LoginActivity::class.java))
+        //}
 
-        if (sharedPreferences.contains("user_token")) {
-            startActivity(Intent(this, IndexActivity::class.java))
-            finish()
-        } else {
-            val intent = Intent(this, LoginActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
+        finish()
     }
 
 }
