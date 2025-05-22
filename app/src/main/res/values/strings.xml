@@ -45,4 +45,7 @@
     <string name="hello_blank_fragment_user_profile">Hello blank fragment User Profile</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="o_que_est_buscando">O que está buscando?</string>
+    <string name="descri_o">Descrição</string>
+    <string name="servi_o">Serviço</string>
 </resources>

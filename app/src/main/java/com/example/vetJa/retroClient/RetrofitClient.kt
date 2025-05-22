@@ -1,18 +1,28 @@
 package com.example.vetJa.retroClient
 
+import android.content.Context
+import androidx.appcompat.app.AppCompatActivity.MODE_PRIVATE
 import com.example.vetJa.API.ApiService
+import com.example.vetJa.interceptor.AuthInterceptor
+import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-object RetrofitClient {
-    private const val BASE_URL = "http://192.168.68.106:8000"
+class RetrofitClient(private val context: Context) {
+    private val _baseUrl = "http://192.168.15.17:8000"
 
-    val instance: ApiService by lazy {
-        Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-            .create(ApiService::class.java)
-    }
+
+    private val client = OkHttpClient.Builder()
+        .addInterceptor(AuthInterceptor(context))
+        .build()
+
+    private val retrofit = Retrofit.Builder()
+        .baseUrl(_baseUrl)
+        .client(client)
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+
+    val api: ApiService = retrofit.create(ApiService::class.java)
+
 
 }
