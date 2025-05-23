@@ -190,7 +190,7 @@ public class AddDialogFragment : DialogFragment() {
 
 
     private fun toDto(email: String?, name: String?, cpf: String?, tel: String?, pass: String?, idCliente: String?) : UserDTO {
-        return UserDTO(name, email,cpf, pass, idCliente);
+        return UserDTO(name, email,cpf, pass, idCliente, tel, null, null);
     }
 
 

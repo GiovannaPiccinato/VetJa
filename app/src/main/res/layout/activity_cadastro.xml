@@ -5,29 +5,19 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activitys.IndexActivity">
+    android:background="@color/white"
+    tools:context=".activitys.CadastrosActivity">
 
     <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/indexFragmentContainer"
+        android:id="@+id/fragmentContainerCadastro"
         android:name="androidx.navigation.fragment.NavHostFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:defaultNavHost="true"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation_fragment"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/navegacao" />
-
-    <androidx.fragment.app.FragmentContainerView
-        android:id="@+id/bottom_navigation_fragment"
-        android:name="com.example.vetJa.fragments.BottomNavigationMenuFragment"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="bottom"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        tools:layout="@layout/fragment_bottom_navigation_menu" />
-
+        app:layout_constraintTop_toTopOf="parent"
+        app:defaultNavHost="true"
+        app:navGraph="@navigation/cadastro_navegacao"
+        />
 </androidx.constraintlayout.widget.ConstraintLayout>

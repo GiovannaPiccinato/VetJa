@@ -12,6 +12,7 @@
         android:id="@+id/imageSuperior"
         android:layout_width="318dp"
         android:layout_height="210dp"
+        android:contentDescription="@string/cadastre_se"
         android:src="@drawable/polygon_superior_fundo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
@@ -63,12 +64,39 @@
         app:layout_constraintTop_toBottomOf="@+id/textCadastroUser">
 
         <EditText
-            android:id="@+id/editNomeCadastroUser"
+            android:id="@+id/nomeCadastroUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:background="@null"
             android:ems="10"
             android:hint="@string/nomeCadastroUser"
+            android:inputType="textPersonName"
+            android:padding="12dp" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView6"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="32dp"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="2dp"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cardView1">
+
+        <EditText
+            android:id="@+id/senhaCadastroUser"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:autofillHints="password"
+            android:background="@null"
+            android:ems="10"
+            android:hint="@string/senhaCadastroUser"
             android:inputType="textPersonName"
             android:padding="12dp" />
     </androidx.cardview.widget.CardView>
@@ -85,12 +113,13 @@
         app:cardUseCompatPadding="true"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView1">
+        app:layout_constraintTop_toBottomOf="@+id/cardView6">
 
         <EditText
-            android:id="@+id/editTelCadastroUser"
+            android:id="@+id/telCadastroUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints=""
             android:background="@null"
             android:ems="10"
             android:hint="@string/telCadastroUser"
@@ -113,9 +142,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView2">
 
         <EditText
-            android:id="@+id/editEmailCadastroUser"
+            android:id="@+id/emailCadastroUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="emailAddress"
             android:background="@null"
             android:ems="10"
             android:hint="@string/emailCadastroUser"
@@ -138,9 +168,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView3">
 
         <EditText
-            android:id="@+id/CepCadastroUser"
+            android:id="@+id/cepCadastroUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="postalAddress"
             android:background="@null"
             android:ems="10"
             android:hint="@string/cepCadastroUser"
@@ -163,9 +194,10 @@
         app:layout_constraintTop_toBottomOf="@+id/cardView4">
 
         <EditText
-            android:id="@+id/editNumeroCasaCadastroUser"
+            android:id="@+id/numeroCasaCadastroUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:autofillHints="postalAddress"
             android:background="@null"
             android:ems="10"
             android:hint="@string/numeroCadastroUser"
@@ -190,6 +222,7 @@
         android:id="@+id/imageInferior"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:contentDescription="@string/cadastre_se"
         android:src="@drawable/polygon_inferior_fundo"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
