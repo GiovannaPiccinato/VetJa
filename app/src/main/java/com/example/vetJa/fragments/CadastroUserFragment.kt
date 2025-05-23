@@ -87,24 +87,20 @@ class CadastroUserFragment : Fragment() {
         val usuario = UserDTO(
             nome = binding.nomeCadastroUser.text.toString(),
             senha = binding.senhaCadastroUser.text.toString(),
-            telefone = binding.telCadastroUser.text.toString(),
             email = binding.emailCadastroUser.text.toString(),
             cep = binding.cepCadastroUser.text.toString(),
             endereco = binding.numeroCasaCadastroUser.text.toString(),
             idCliente = null,
-            cpf = null
         )
 
         val bundle = Bundle().apply {
             with(usuario) {
                 putString("nome", nome)
                 putString("senha", senha)
-                putString("telefone", telefone)
                 putString("email", email)
                 putString("cep", cep)
                 putString("endereco", endereco)
                 putString("idCliente", idCliente)
-                putString("cpf", cpf)
             }
         }
 

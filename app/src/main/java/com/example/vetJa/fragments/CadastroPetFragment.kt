@@ -32,10 +32,8 @@ class CadastroPetFragment : Fragment() {
         arguments?.let { args ->
             usuario = UserDTO(
                 idCliente = null,
-                cpf = args.getString("cpf"),
                 nome = args.getString("nome"),
                 senha = args.getString("senha"),
-                telefone = args.getString("telefone"),
                 email = args.getString("email"),
                 cep = args.getString("cep"),
                 endereco = args.getString("endereco"),
