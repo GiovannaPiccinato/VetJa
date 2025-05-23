@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetJa.activitys.IndexActivity
+import com.example.vetJa.activitys.IntroducaoActivity
 import com.example.vetJa.activitys.LoginActivity
 
 
@@ -12,16 +13,15 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-//        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
-//        val token = sharedPreferences.getString("user_token", "teste")
-//
-//        if (!token.isNullOrEmpty()) {
-//            startActivity(Intent(this, IndexActivity::class.java))
-//        } else {
-            startActivity(Intent(this, LoginActivity::class.java))
-        //}
+        val sharedPreferences = getSharedPreferences("user_token", MODE_PRIVATE)
 
-        finish()
+        if (sharedPreferences.contains("user_token")) {
+            startActivity(Intent(this, IndexActivity::class.java))
+            finish()
+        } else {
+            val intent = Intent(this, IntroducaoActivity::class.java)
+            startActivity(intent)
+            finish()
+        }
     }
-
 }

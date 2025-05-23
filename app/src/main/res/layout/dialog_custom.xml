@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_gravity="center"
+    android:background="@drawable/rounded_background"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="26dp">
+
+    <TextView
+        android:id="@+id/dialogTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/titulo_dialog"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        style="?android:attr/buttonBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="26dp"
+        android:gravity="center|top"
+        android:orientation="horizontal">
+
+
+        <Button
+            android:id="@+id/dialogBtnSim"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sim"
+            android:backgroundTint="#007AFF"
+            android:textColor="@color/white"
+            android:layout_marginEnd="18dp"
+            app:cornerRadius="8dp" />
+
+        <Button
+            android:id="@+id/dialogBtnNao"
+            style="?android:attr/buttonBarButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:backgroundTint="#FE8105"
+            android:textColor="@color/white"
+            android:text="@string/nao"
+            app:cornerRadius="8dp"
+            />
+    </LinearLayout>
+
+</LinearLayout>

@@ -7,6 +7,10 @@ android {
     namespace = "com.example.vetJa"
     compileSdk = 35
 
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.vetJa"
         minSdk = 24
