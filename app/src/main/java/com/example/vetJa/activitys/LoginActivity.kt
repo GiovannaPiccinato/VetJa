@@ -22,6 +22,7 @@ import retrofit2.http.POST
 class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private val client = RetrofitClient(this).api;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +44,7 @@ class LoginActivity : AppCompatActivity() {
 
     private fun makeLogin(email: String, password: String) {
         val request = LoginRequest(email, password)
-        val call = RetrofitClient.instance.login(request)
+        val call = client.login(request)
 
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {

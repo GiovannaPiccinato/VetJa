@@ -40,6 +40,9 @@
     <string name="sexoPet">Sexo do Pet</string>
     <string name="txtAtualizaPet">Atualize os dados do pet</string>
     <string name="subtituloAtualizaPet">Atualize as informações e clique em avançar</string>
+    <string name="o_que_est_buscando">O que está buscando?</string>
+    <string name="descri_o">Descrição</string>
+    <string name="servi_o">Serviço</string>
     <string name="sim">Sim</string>
     <string name="nao">Não</string>
     <string name="titulo_dialog">Deseja adicionar mais um Pet?</string>
