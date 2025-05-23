@@ -1,5 +1,6 @@
 package com.example.vetJa.API
 
+import com.example.vetJa.models.Pet.Pet
 import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.models.login.LoginResponse
@@ -41,5 +42,4 @@ interface ApiService {
 
     @GET("/pets/all")
     fun getListPets(): Call<List<PetDTO>>
-
 }

@@ -1,5 +1,4 @@
-package com.example.vetJa.adapter
-
+package com.example.vetJa.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -7,12 +6,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vetJa.R
-import com.example.vetJa.models.Pet.Pet
+import com.example.vetJa.models.Pet.PetDTO
 
 class PetAdapter(
-    private val petList: List<Pet>,
-    private val onEditClick: (Pet) -> Unit,
-    private val onDeleteClick: (Pet) -> Unit
+    private val petList: List<PetDTO>,
+    private val onEditClick: (PetDTO) -> Unit,
+    private val onDeleteClick: (PetDTO) -> Unit
 ) : RecyclerView.Adapter<PetAdapter.PetViewHolder>() {
 
     inner class PetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -32,13 +31,12 @@ class PetAdapter(
         val pet = petList[position]
 
         // definir a imagem pela especie
-        val imageResource = if (pet.gato) R.drawable.especiegato else R.drawable.especiecachorro
+        val imageResource = if (pet.gato == true) R.drawable.especiegato else R.drawable.especiecachorro
 
 
         holder.imgEspeciePet.setImageResource(imageResource)
         holder.txtPetName.text = pet.nome
-        holder.txtPetInfo.text = "${pet.idade} | ${if (pet.macho) "Macho" else "Fêmea"} | ${if (pet.gato) "Gato" else "Cachorro"}"
-
+        holder.txtPetInfo.text = "${pet.idade} | ${if (pet.macho == true) "Macho" else "Fêmea"} | ${if (pet.gato == true) "Gato" else "Cachorro"}"
         holder.imgEditPet.setOnClickListener { onEditClick(pet) }
         holder.imgDeletePet.setOnClickListener { onDeleteClick(pet) }
     }
