@@ -55,8 +55,28 @@ class ListPetFragment : Fragment() {
                     .commit()
             },
             onDeleteClick = { selectedPet ->
-                //aguardar
+                val apiService = RetrofitClient(requireContext()).api
+                val petId = selectedPet.id// pega o ID que deseja excluir
+
+                val call = apiService.deletePet(petId, "Bearer SEU_TOKEN") // substitua "SEU_TOKEN" pelo token real
+
+                call.enqueue(object : Callback<Void> {
+                    override fun onResponse(call: Call<Void>, response: Response<Void>) {
+                        if (response.isSuccessful) {
+                            pet.remove(selectedPet) // Remove o pet da lista
+                            adapter.notifyDataSetChanged() // Atualiza o RecyclerView
+                            Toast.makeText(requireContext(), "Pet deletado com sucesso!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(requireContext(), "Erro ao deletar o pet.", Toast.LENGTH_SHORT).show()
+                        }
+                    }
+
+                    override fun onFailure(call: Call<Void>, t: Throwable) {     // Se houve falha na chamada, como falta de internet ou erro de conexão.
+                        Toast.makeText(requireContext(), "Falha na conexão.", Toast.LENGTH_SHORT).show()  // Mostra uma mensagem avisando que houve problema na comunicação com a API.
+                    }
+                })
             }
+
         )
         recyclerView.adapter = adapter
         Log.d("ListPetFragment", "RecyclerView e Adapter configurados")
