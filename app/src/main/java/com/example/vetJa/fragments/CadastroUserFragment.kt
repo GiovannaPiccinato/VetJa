@@ -1,7 +1,7 @@
 package com.example.vetJa.fragments
 
 import android.os.Bundle
-import android.util.Log
+
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,9 +10,6 @@ import androidx.navigation.fragment.findNavController
 import com.example.vetJa.R
 import com.example.vetJa.databinding.FragmentCadastroUserBinding
 import com.example.vetJa.models.user.UserDTO
-
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
 
 class CadastroUserFragment : Fragment() {
 
@@ -88,8 +85,10 @@ class CadastroUserFragment : Fragment() {
             nome = binding.nomeCadastroUser.text.toString(),
             senha = binding.senhaCadastroUser.text.toString(),
             email = binding.emailCadastroUser.text.toString(),
-            cep = binding.cepCadastroUser.text.toString(),
-            endereco = binding.numeroCasaCadastroUser.text.toString(),
+//            cep = binding.cepCadastroUser.text.toString(),
+//            endereco = binding.numeroCasaCadastroUser.text.toString(),
+            telefone = binding.telCadastroUser.text.toString(),
+            cpf = "00000000000", // CPF is not provided in the form, using a placeholder
             idCliente = null,
         )
 
@@ -98,8 +97,10 @@ class CadastroUserFragment : Fragment() {
                 putString("nome", nome)
                 putString("senha", senha)
                 putString("email", email)
-                putString("cep", cep)
-                putString("endereco", endereco)
+                putString("telefone", telefone)
+                putString("cpf", cpf)
+//                putString("cep", cep)
+//                putString("endereco", endereco)
                 putString("idCliente", idCliente)
             }
         }

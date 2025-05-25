@@ -15,9 +15,6 @@ import retrofit2.*
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
-import retrofit2.http.Body
-import retrofit2.http.POST
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
@@ -81,12 +78,5 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Erro: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
-    }
-
-    interface ApiService {
-        @POST("/auth/signIn")
-        fun login(
-            @Body req: LoginRequest
-        ): Call<List<LoginResponse>>
     }
 }
