@@ -7,5 +7,5 @@ data class UserDTO(
     val senha: String?,
 //    val cep: String?,
 //    val endereco: String?,
-    val idCliente: String?
+    var idCliente: String?
 )

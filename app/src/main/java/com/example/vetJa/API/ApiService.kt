@@ -6,12 +6,13 @@ import com.example.vetJa.models.login.LoginResponse
 import com.example.vetJa.models.service.Service
 import com.example.vetJa.models.user.User
 import com.example.vetJa.models.user.UserDTO
+import com.example.vetJa.models.user.UserResponse
 import retrofit2.Call
-import retrofit2.http.Body
+import retrofit2.http.DELETE
 import retrofit2.http.GET
-import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
+import retrofit2.http.Body
 
 interface ApiService {
 
@@ -28,7 +29,7 @@ interface ApiService {
     fun getUserByEmail(@Body dto: UserDTO): Call<User>
 
     @POST("/auth/signup")
-    fun createUser(@Body dto: UserDTO): Call<LoginResponse>
+    fun createUser(@Body dto: UserDTO): Call<UserResponse>
 
     @POST("/auth/signin")
     fun login(@Body dto: LoginRequest): Call<LoginResponse>
@@ -41,5 +42,8 @@ interface ApiService {
 
     @GET("/pets/all")
     fun getListPets(): Call<List<PetDTO>>
+
+    @POST("/animals/animal")
+    fun createPet(@Body dto: PetDTO): Call<PetDTO>
 
 }

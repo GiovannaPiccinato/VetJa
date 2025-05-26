@@ -12,9 +12,10 @@ import androidx.fragment.app.Fragment
 import com.example.vetJa.R
 import com.example.vetJa.activitys.LoginActivity
 import com.example.vetJa.databinding.FragmentCadastroPetBinding
-import com.example.vetJa.models.PetDTO
+import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.models.login.LoginResponse
 import com.example.vetJa.models.user.UserDTO
+import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
 
@@ -51,6 +52,7 @@ class CadastroPetFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
         retrofitClient = RetrofitClient(requireContext().applicationContext)
 
@@ -77,7 +79,7 @@ class CadastroPetFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            if (binding.sexoPet.text.isEmpty()) {
+            if (defineSex(binding.spinnerSexoPet.selectedItem.toString()) == "n") {
                 toast("Preencha o sexo do pet", requireContext())
                 return@setOnClickListener
             }
@@ -86,14 +88,6 @@ class CadastroPetFragment : Fragment() {
                 toast("Preencha a idade do pet", requireContext())
                 return@setOnClickListener
             }
-
-            val pet = PetDTO(
-                id = null,
-                nome = binding.nomeCadastroPet.text.toString(),
-                sexo = binding.sexoPet.text.toString(),
-                idade = binding.idadePet.text.toString(),
-                isCat = especie
-            )
 
             val dialogView = layoutInflater.inflate(R.layout.dialog_custom, null)
 
@@ -106,7 +100,6 @@ class CadastroPetFragment : Fragment() {
 
             buttonSim.setOnClickListener {
                 saveUser(usuario)
-                savePet(pet)
                 Log.d("CustomDialog", "Entrada do usuário: Confirmar")
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 requireActivity().finish()
@@ -115,7 +108,6 @@ class CadastroPetFragment : Fragment() {
 
             buttonNao.setOnClickListener {
                 saveUser(usuario)
-                savePet(pet)
                 Log.d("CustomDialog", "Entrada do usuário: Cancelar")
                 startActivity(Intent(requireContext(), LoginActivity::class.java))
                 requireActivity().finish()
@@ -138,23 +130,41 @@ class CadastroPetFragment : Fragment() {
         }
     }
 
+    private fun defineSex(sexo: String): String {
+        return when (sexo) {
+            "Macho" -> "m"
+            "Fêmea" -> "f"
+            else -> "n"
+        }
+    }
+
     private fun saveUser(usuario: UserDTO?) {
 
         Log.d("CadastroPetFragment", "Usuário: $usuario")
         val apiService = retrofitClient.api
-        apiService.createUser(usuario!!).enqueue(object : retrofit2.Callback<LoginResponse> {
+        apiService.createUser(usuario!!).enqueue(object : retrofit2.Callback<UserResponse> {
             override fun onResponse(
-                call: retrofit2.Call<LoginResponse>,
-                response: retrofit2.Response<LoginResponse>
+                call: retrofit2.Call<UserResponse>,
+                response: retrofit2.Response<UserResponse>
             ) {
                 if (response.isSuccessful) {
+                    val pet = PetDTO(
+                        idCliente = response.body()!!.idCliente,
+                        idAnimal = null,
+                        nome = binding.nomeCadastroPet.text.toString(),
+                        idade = binding.idadePet.text.toString(),
+                        raca = if (especie) "Gato" else "Cachorro"
+//                        sexo = defineSex(binding.spinnerSexoPet.selectedItem.toString()),
+//                        isCat = especie
+                    )
+                    savePet(pet)
                     toast("Usuário salvo com sucesso", requireContext())
                 } else {
                     toast("Erro ao salvar usuário", requireContext())
                 }
             }
 
-            override fun onFailure(call: retrofit2.Call<LoginResponse>, t: Throwable) {
+            override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
                 toast("Falha na requisição: ${t.message}", requireContext())
             }
         })
@@ -163,9 +173,27 @@ class CadastroPetFragment : Fragment() {
     private fun savePet(pet: PetDTO) {
         // Implementar a lógica para salvar o pet
         Log.d("CadastroPetFragment", "Pet salvo: $pet")
+        Log.d("CadastroPetFragment", "Usuário ID: ${usuario?.idCliente}")
+        Log.d("CadastroPetFragment", "Pet com ID do cliente: $pet")
 
-//        val apiService = retrofitClient.api
+        val apiService = retrofitClient.api
+        apiService.createPet(pet).enqueue(object : retrofit2.Callback<PetDTO> {
+            override fun onResponse(
+                call: retrofit2.Call<PetDTO>,
+                response: retrofit2.Response<PetDTO>
+            ) {
+                if (response.isSuccessful) {
+                    toast("Pet salvo com sucesso", requireContext())
+                } else {
+                    Log.e("CadastroPetFragment", "Erro ao salvar pet: ${response.errorBody()?.string()}")
+                    toast("Erro ao salvar pet", requireContext())
+                }
+            }
 
+            override fun onFailure(call: retrofit2.Call<PetDTO>, t: Throwable) {
+                toast("Falha na requisição: ${t.message}", requireContext())
+            }
+        })
     }
 
 

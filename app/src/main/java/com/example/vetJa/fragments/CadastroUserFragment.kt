@@ -88,7 +88,7 @@ class CadastroUserFragment : Fragment() {
 //            cep = binding.cepCadastroUser.text.toString(),
 //            endereco = binding.numeroCasaCadastroUser.text.toString(),
             telefone = binding.telCadastroUser.text.toString(),
-            cpf = "00000000000", // CPF is not provided in the form, using a placeholder
+            cpf = binding.telCadastroUser.text.toString(), // CPF is not provided in the form, using a placeholder
             idCliente = null,
         )
 

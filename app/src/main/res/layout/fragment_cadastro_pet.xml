@@ -84,15 +84,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView1">
 
-        <EditText
-            android:id="@+id/sexoPet"
+        <Spinner
+            android:id="@+id/spinnerSexoPet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:ems="10"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/sexo_array"
             android:hint="@string/sexoPet"
-            android:inputType="text"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:popupBackground="@color/white"
+            android:spinnerMode="dropdown"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="384dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sexo_array">
+        <item id="outros">Outros</item>
+        <item id="macho">Macho</item>
+        <item id="femea">Fêmea</item>
+    </string-array>
+</resources>
