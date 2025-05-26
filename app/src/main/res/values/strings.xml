@@ -24,6 +24,7 @@
     <string name="bemVindo">Seja Bem Vindo(a)</string>
     <string name="atualizaCadastroUser">Atualizando seu Cadastro</string>
     <string name="nomeCadastroUser">Seu Nome</string>
+    <string name="senhaCadastroUser">Sua Senha</string>
     <string name="telCadastroUser">Seu Telefone</string>
     <string name="emailCadastroUser">Seu E-mail</string>
     <string name="cepCadastroUser">Seu Cep</string>
@@ -39,13 +40,12 @@
     <string name="sexoPet">Sexo do Pet</string>
     <string name="txtAtualizaPet">Atualize os dados do pet</string>
     <string name="subtituloAtualizaPet">Atualize as informações e clique em avançar</string>
-
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment_home">Hello blank fragment Home</string>
-    <string name="hello_blank_fragment_user_profile">Hello blank fragment User Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="o_que_est_buscando">O que está buscando?</string>
     <string name="descri_o">Descrição</string>
     <string name="servi_o">Serviço</string>
+    <string name="avatar">avatar</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="titulo_dialog">Deseja adicionar mais um Pet?</string>
+    <string name="hello_blank_fragment_home">Hello Blank Fragment Home</string>
 </resources>

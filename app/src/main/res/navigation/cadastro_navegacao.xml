@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cadastro_navegacao"
+    app:startDestination="@id/cadastroUserFragment">
+
+    <fragment
+        android:id="@+id/cadastroUserFragment"
+        android:name="com.example.vetJa.fragments.CadastroUserFragment"
+        android:label="fragment_cadastro_user"
+        tools:layout="@layout/fragment_cadastro_user" >
+        <action
+            android:id="@+id/action_cadastroUserFragment_to_cadastroPetFragment"
+            app:destination="@id/cadastroPetFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/cadastroPetFragment"
+        android:name="com.example.vetJa.fragments.CadastroPetFragment"
+        android:label="fragment_cadastro_pet"
+        tools:layout="@layout/fragment_cadastro_pet" />
+</navigation>
