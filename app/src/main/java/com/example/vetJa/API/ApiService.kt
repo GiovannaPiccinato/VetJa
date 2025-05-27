@@ -48,4 +48,6 @@ interface ApiService {
     @DELETE("/pets/{id}")
     fun deletePet(@Path("id") petId: Int, @Header("Authorization") token: String): Call<Void>
 
+    @GET("veterinarios")
+    suspend fun getVeterinarios(): List<Veterinario>
 }
