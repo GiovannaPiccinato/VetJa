@@ -36,8 +36,18 @@ class CadastroUserFragment : Fragment() {
             return
         }
 
+        if (binding.senhaCadastroUser.text.toString().length < 6) {
+            binding.senhaCadastroUser.error = "A senha deve ter pelo menos 6 caracteres"
+            return
+        }
+
         if (binding.telCadastroUser.text.isNullOrEmpty()) {
             binding.telCadastroUser.error = "Campo telefone é obrigatório"
+            return
+        }
+
+        if (binding.telCadastroUser.text.toString().length < 10) {
+            binding.telCadastroUser.error = "O telefone deve ter pelo menos 10 dígitos"
             return
         }
 
@@ -51,8 +61,14 @@ class CadastroUserFragment : Fragment() {
             return
         }
 
+        //mudar depois
         if (binding.cepCadastroUser.text.isNullOrEmpty()) {
-            binding.cepCadastroUser.error = "Campo cep é obrigatório"
+            binding.cepCadastroUser.error = "Campo CPF é obrigatório"
+            return
+        }
+
+        if (binding.cepCadastroUser.text.toString().length < 12) {
+            binding.cepCadastroUser.error = "O CPF deve ter pelo menos 8 dígitos"
             return
         }
 
@@ -66,20 +82,7 @@ class CadastroUserFragment : Fragment() {
             return
         }
 
-        if (binding.senhaCadastroUser.text.toString().length < 6) {
-            binding.senhaCadastroUser.error = "A senha deve ter pelo menos 6 caracteres"
-            return
-        }
 
-        if (binding.telCadastroUser.text.toString().length < 10) {
-            binding.telCadastroUser.error = "O telefone deve ter pelo menos 10 dígitos"
-            return
-        }
-
-        if (binding.cepCadastroUser.text.toString().length < 8) {
-            binding.cepCadastroUser.error = "O CEP deve ter pelo menos 8 dígitos"
-            return
-        }
 
         val usuario = UserDTO(
             nome = binding.nomeCadastroUser.text.toString(),
@@ -88,7 +91,7 @@ class CadastroUserFragment : Fragment() {
 //            cep = binding.cepCadastroUser.text.toString(),
 //            endereco = binding.numeroCasaCadastroUser.text.toString(),
             telefone = binding.telCadastroUser.text.toString(),
-            cpf = binding.telCadastroUser.text.toString(), // CPF is not provided in the form, using a placeholder
+            cpf = binding.cepCadastroUser.text.toString(), // CPF is not provided in the form, using a placeholder
             idCliente = null,
         )
 

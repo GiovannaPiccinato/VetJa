@@ -22,6 +22,9 @@ interface ApiService {
     @GET("/users/user")
     fun getUserById(): Call<User>
 
+    @GET("/users/user")
+    fun getUserDTOById(): Call<UserDTO>
+
     @GET("/services/all")
     fun getAllServices(): Call<List<Service>>
 

@@ -7,4 +7,5 @@ data class User(
     val email: String,
     val senha: String,
     val idCliente: String
+    
 )
