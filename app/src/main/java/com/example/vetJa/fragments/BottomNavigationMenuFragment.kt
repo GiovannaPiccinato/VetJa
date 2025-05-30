@@ -40,6 +40,11 @@ open class BottomNavigationMenuFragment : Fragment() {
                         .replace(R.id.indexFragmentContainer, UserProfileFragment())
                         .commit()
                     true
+                }R.id.petListFragment -> {
+                    parentFragmentManager.beginTransaction()
+                        .replace(R.id.indexFragmentContainer, ListPetFragment())
+                        .commit()
+                    true
                 }
                 else -> false
             }

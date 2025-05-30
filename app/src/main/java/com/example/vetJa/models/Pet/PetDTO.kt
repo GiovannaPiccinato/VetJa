@@ -7,6 +7,14 @@ package com.example.vetJa.models.Pet
 //    val macho: Boolean?
 //)
 
+
+  //val id: Int,
+  //val nome: String?,
+  //val gato: Boolean?,
+  //val idade: Int?
+  //val macho: Boolean?
+
+
 data class PetDTO(
     var idCliente: String?,
     val idAnimal: String?,
@@ -14,5 +22,5 @@ data class PetDTO(
     val idade: String,
     val raca: String
 //    val sexo: String,
-//    val isCat: Boolean,
+//    val isCat: Boolean
 )

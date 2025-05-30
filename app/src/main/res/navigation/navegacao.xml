@@ -15,4 +15,9 @@
         android:name="com.example.vetJa.fragments.UserProfileFragment"
         android:label="fragment_user_profile"
         tools:layout="@layout/fragment_user_profile" />
+    <fragment
+        android:id="@+id/petListFragment"
+        android:name="com.example.vetJa.fragments.ListPetFragment"
+        android:label="fragment_pet_list"
+        tools:layout="@layout/fragment_pet_list" />
 </navigation>

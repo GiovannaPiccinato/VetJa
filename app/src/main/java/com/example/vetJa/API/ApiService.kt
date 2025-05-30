@@ -1,5 +1,6 @@
 package com.example.vetJa.API
 
+import com.example.vetJa.models.Pet.Pet
 import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.models.login.LoginResponse
@@ -8,11 +9,12 @@ import com.example.vetJa.models.user.User
 import com.example.vetJa.models.user.UserDTO
 import com.example.vetJa.models.user.UserResponse
 import retrofit2.Call
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
 import retrofit2.http.PUT
-import retrofit2.http.Body
+import retrofit2.http.Path
 
 interface ApiService {
 
@@ -46,7 +48,11 @@ interface ApiService {
     @GET("/pets/all")
     fun getListPets(): Call<List<PetDTO>>
 
+    @DELETE("/pets/{id}")
+    fun deletePet(@Path("id") petId: Int, @Header("Authorization") token: String): Call<Void>
+
     @POST("/animals/animal")
     fun createPet(@Body dto: PetDTO): Call<PetDTO>
+
 
 }
