@@ -1,5 +1,6 @@
 package com.example.vetJa.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -8,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import com.example.vetJa.R
 import com.example.vetJa.activitys.LoginActivity
@@ -18,7 +20,6 @@ import com.example.vetJa.models.user.UserDTO
 import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
-
 
 class CadastroPetFragment : Fragment() {
 
@@ -42,8 +43,6 @@ class CadastroPetFragment : Fragment() {
                 email = args.getString("email"),
                 cpf = args.getString("cpf"),
                 telefone = args.getString("telefone"),
-//                cep = args.getString("cep"),
-//                endereco = args.getString("endereco"),
             )
         } ?: Log.d("CadastroPetFragment", "Arguments are null")
 
@@ -147,20 +146,29 @@ class CadastroPetFragment : Fragment() {
                 call: retrofit2.Call<UserResponse>,
                 response: retrofit2.Response<UserResponse>
             ) {
-                if (response.isSuccessful) {
+                val userResponse = response.body()
+                if (response.isSuccessful && userResponse != null) {
+                    val sharedPreferences = requireContext().getSharedPreferences("user_token", Context.MODE_PRIVATE)
+                    sharedPreferences.edit {
+                        putString("user_token", userResponse.signIn.token)
+                    }
+
+                    Log.d("token-shared", sharedPreferences.getString("user_token", "").toString())
+
+                    toast("Olá, ${userResponse.signIn.user.nome}, Seja bem-vindo(a)!", requireContext())
+
                     val pet = PetDTO(
-                        idCliente = response.body()!!.idCliente,
+                        idCliente = userResponse.signIn.user.idCliente,
                         idAnimal = null,
                         nome = binding.nomeCadastroPet.text.toString(),
                         idade = binding.idadePet.text.toString(),
                         raca = if (especie) "Gato" else "Cachorro"
-//                        sexo = defineSex(binding.spinnerSexoPet.selectedItem.toString()),
-//                        isCat = especie
                     )
                     savePet(pet)
                     toast("Usuário salvo com sucesso", requireContext())
                 } else {
-                    toast("Erro ao salvar usuário", requireContext())
+                    Log.e("CadastroPetFragment", "Erro ao salvar usuário: ${response.errorBody()?.string()}")
+                    toast("Erro ao salvar usuário: resposta inválida", requireContext())
                 }
             }
 
@@ -171,7 +179,6 @@ class CadastroPetFragment : Fragment() {
     }
 
     private fun savePet(pet: PetDTO) {
-        // Implementar a lógica para salvar o pet
         Log.d("CadastroPetFragment", "Pet salvo: $pet")
         Log.d("CadastroPetFragment", "Usuário ID: ${usuario?.idCliente}")
         Log.d("CadastroPetFragment", "Pet com ID do cliente: $pet")
@@ -195,6 +202,4 @@ class CadastroPetFragment : Fragment() {
             }
         })
     }
-
-
 }

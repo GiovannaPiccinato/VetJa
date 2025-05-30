@@ -67,8 +67,8 @@ class CadastroUserFragment : Fragment() {
             return
         }
 
-        if (binding.cepCadastroUser.text.toString().length < 12) {
-            binding.cepCadastroUser.error = "O CPF deve ter pelo menos 8 dígitos"
+        if (binding.cepCadastroUser.text.toString().length < 11) {
+            binding.cepCadastroUser.error = "O CPF deve ter pelo menos 11 dígitos"
             return
         }
 
