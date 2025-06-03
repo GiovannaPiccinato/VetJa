@@ -1,30 +1,29 @@
 package com.example.vetJa.adapters
 
-import android.annotation.SuppressLint
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.compose.ui.semantics.text
+import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.vetJa.databinding.ItemVeterinarioBinding
-import com.example.vetJa.models.Veterinario
+import com.example.vetJa.R
+import com.example.vetJa.models.Vet.VetDTO
 
 class VetAdapter(
-    private var veterinarios: List<Veterinario>,
-    private val onItemClicked: (Veterinario) -> Unit
+    private var veterinarios: List<VetDTO>, // ✅ Aqui estava List<Vet>, agora é List<VetDTO>
+    private val onItemClicked: (VetDTO) -> Unit
 ) : RecyclerView.Adapter<VetAdapter.VetViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VetViewHolder {
-        val binding = ItemVeterinarioBinding.inflate(
-            LayoutInflater.from(parent.context),
-            parent,
-            false
-        )
-        return VetViewHolder(binding)
+        val view = LayoutInflater.from(parent.context).inflate(R.layout.item_vet, parent, false)
+        return VetViewHolder(view)
     }
 
     override fun onBindViewHolder(holder: VetViewHolder, position: Int) {
         val veterinario = veterinarios[position]
-        holder.bind(veterinario)
+        holder.txtNomeVeterinario.text = veterinario.nome
+        holder.txtCrmvVeterinario.text = "CRMV: ${veterinario.crmv}"
+        holder.txtEspecialidadeVeterinario.text = veterinario.especialidade
+
         holder.itemView.setOnClickListener {
             onItemClicked(veterinario)
         }
@@ -32,19 +31,9 @@ class VetAdapter(
 
     override fun getItemCount(): Int = veterinarios.size
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun updateData(newVeterinarios: List<Veterinario>) {
-        this.veterinarios = newVeterinarios
-        notifyDataSetChanged()
-    }
-
-    inner class VetViewHolder(private val binding: ItemVeterinarioBinding) :
-        RecyclerView.ViewHolder(binding.root) {
-
-        fun bind(veterinario: Veterinario) {
-            binding.textNomeVeterinario.text = veterinario.nome
-            binding.textCrmvVeterinario.text = "CRMV: ${veterinario.crmv}"
-            binding.textEspecialidadeVeterinario.text = veterinario.especialidade
-        }
+    inner class VetViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val txtNomeVeterinario: TextView = itemView.findViewById(R.id.textNomeVeterinario)
+        val txtCrmvVeterinario: TextView = itemView.findViewById(R.id.textCrmvVeterinario)
+        val txtEspecialidadeVeterinario: TextView = itemView.findViewById(R.id.textEspecialidadeVeterinario)
     }
 }

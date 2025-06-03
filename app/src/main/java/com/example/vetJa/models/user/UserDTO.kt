@@ -5,7 +5,7 @@ data class UserDTO(
     val cpf: String?,
     val telefone: String?,
     val senha: String?,
-//    val cep: String?,
+    val cep: String?,
 //    val endereco: String?,
     val idCliente: String?
 )

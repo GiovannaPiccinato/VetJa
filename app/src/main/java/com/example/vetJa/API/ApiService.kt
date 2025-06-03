@@ -2,6 +2,7 @@ package com.example.vetJa.API
 
 import com.example.vetJa.models.Pet.Pet
 import com.example.vetJa.models.Pet.PetDTO
+import com.example.vetJa.models.Vet.VetDTO
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.models.login.LoginResponse
 import com.example.vetJa.models.service.Service
@@ -48,6 +49,6 @@ interface ApiService {
     @DELETE("/pets/{id}")
     fun deletePet(@Path("id") petId: Int, @Header("Authorization") token: String): Call<Void>
 
-    @GET("veterinarios")
-    suspend fun getVeterinarios(): List<Veterinario>
+    @GET("/veterinarios/all")
+    fun getVeterinarios(): Call<List<VetDTO>>
 }
