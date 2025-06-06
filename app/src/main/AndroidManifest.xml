@@ -12,6 +12,12 @@
         android:theme="@style/Theme.Login"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".activitys.CadastrosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activitys.IntroducaoActivity"
+            android:exported="false" />
+        <activity
             android:name=".activitys.IndexActivity"
             android:exported="false" />
         <activity
@@ -29,6 +35,10 @@
         <activity
             android:name=".activitys.VetListActivity"
             android:exported="false" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

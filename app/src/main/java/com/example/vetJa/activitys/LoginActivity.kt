@@ -6,22 +6,22 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.edit
 import com.example.vetJa.R
+import com.example.vetJa.fragments.CadastroUserFragment
 import com.example.vetJa.models.login.LoginResponse
 import retrofit2.*
 import com.example.vetJa.models.login.LoginRequest
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
-import retrofit2.http.Body
-import retrofit2.http.POST
-
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
+    private val client = RetrofitClient(this).api;
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,8 +31,6 @@ class LoginActivity : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
         val loginButton: Button = findViewById(R.id.loginButton)
 
-
-
         loginButton.setOnClickListener {
             val email = emailEditText.text.toString().trim()
             val password = passwordEditText.text.toString().trim()
@@ -41,9 +39,20 @@ class LoginActivity : AppCompatActivity() {
         }
     }
 
+    override fun onStart() {
+        super.onStart()
+        val textCadastro = findViewById<TextView>(R.id.cadastreSe)
+
+        textCadastro.setOnClickListener {
+
+            startActivity(Intent(this, CadastrosActivity::class.java))
+            finish()
+        }
+    }
+
     private fun makeLogin(email: String, password: String) {
         val request = LoginRequest(email, password)
-        val call = RetrofitClient.instance.login(request)
+        val call = client.login(request)
 
         call.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(call: Call<LoginResponse>, response: Response<LoginResponse>) {
@@ -80,12 +89,5 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this@LoginActivity, "Erro: ${t.message}", Toast.LENGTH_LONG).show()
             }
         })
-    }
-
-    interface ApiService {
-        @POST("/auth/signIn")
-        fun login(
-            @Body req: LoginRequest
-        ): Call<List<LoginResponse>>
     }
 }

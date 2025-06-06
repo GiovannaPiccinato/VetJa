@@ -3,6 +3,7 @@
     <string name="password">Password</string>
     <string name="email">Email</string>
     <string name="login">Entrar</string>
+    <string name="loginLink">Login</string>
     <string name="introduction">Olá, seja bem vindo(a) a VET</string>
     <string name="cadastre_se">Cadastre-se</string>
     <string name="cta_cadastro">Primeira vez aqui?</string>
@@ -15,13 +16,36 @@
     <string name="cpf">cpf</string>
     <string name="senha">Senha</string>
     <string name="telefone">Telefone</string>
+    <string name="termos">Termos de Uso</string>
     <string name="salvar">Salvar</string>
     <string name="add">Add</string>
     <string name="servicos">Serviços</string>
     <string name="configuracao">Meu perfil</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment_home">Hello blank fragment Home</string>
-    <string name="hello_blank_fragment_user_profile">Hello blank fragment User Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="bemVindo">Seja Bem Vindo(a)</string>
+    <string name="atualizaCadastroUser">Atualizando seu Cadastro</string>
+    <string name="nomeCadastroUser">Seu Nome</string>
+    <string name="senhaCadastroUser">Sua Senha</string>
+    <string name="telCadastroUser">Seu Telefone</string>
+    <string name="emailCadastroUser">Seu E-mail</string>
+    <string name="cepCadastroUser">Seu Cep</string>
+    <string name="numeroCadastroUser">Seu N°Residencial</string>
+    <string name="avancar">Avançar</string>
+    <string name="textCadastroUser">Precisamos de algumas informações suas para prestar o melhor atendimento.</string>
+    <string name="introducao">A VeterinariosJA é a sua rede  de médicos veterinários Home Care, somos especializados no atendimento domiciliar de animais de pequeno porte com assistência personalizada e de excelência para o seu filho de 4 patas.</string>
+    <string name="textAtualizaUser">Atualize as informações abaixo, em seguida clique em avançar para  salvar as alterações.</string>
+    <string name="txtcadastroPet">Quem vamos atender?</string>
+    <string name="subtituloCadastroPet">Precisamos de algumas informações do seu pet</string>
+    <string name="nomePet">Nome do Pet</string>
+    <string name="idadePet">Idade do Pet</string>
+    <string name="sexoPet">Sexo do Pet</string>
+    <string name="txtAtualizaPet">Atualize os dados do pet</string>
+    <string name="subtituloAtualizaPet">Atualize as informações e clique em avançar</string>
+    <string name="o_que_est_buscando">O que está buscando?</string>
+    <string name="descri_o">Descrição</string>
+    <string name="servi_o">Serviço</string>
+    <string name="avatar">avatar</string>
+    <string name="sim">Sim</string>
+    <string name="nao">Não</string>
+    <string name="titulo_dialog">Deseja adicionar mais um Pet?</string>
+    <string name="hello_blank_fragment_home">Hello Blank Fragment Home</string>
 </resources>

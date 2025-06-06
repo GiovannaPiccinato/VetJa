@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.vetJa.activitys.IndexActivity
+import com.example.vetJa.activitys.IntroducaoActivity
 import com.example.vetJa.activitys.LoginActivity
 
 
@@ -18,10 +19,9 @@ class MainActivity : AppCompatActivity() {
             startActivity(Intent(this, IndexActivity::class.java))
             finish()
         } else {
-            val intent = Intent(this, LoginActivity::class.java)
+            val intent = Intent(this, IntroducaoActivity::class.java)
             startActivity(intent)
             finish()
         }
     }
-
 }
