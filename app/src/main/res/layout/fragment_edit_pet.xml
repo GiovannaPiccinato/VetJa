@@ -84,15 +84,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardView1">
 
-        <EditText
-            android:id="@+id/editSexoPet"
+        <Spinner
+            android:id="@+id/spinnerSexoPet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:ems="10"
+            android:layout_height="match_parent"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            android:entries="@array/sexo_array"
             android:hint="@string/sexoPet"
-            android:inputType="phone"
-            android:padding="12dp" />
+            android:padding="12dp"
+            android:popupBackground="@color/white"
+            android:spinnerMode="dropdown"
+            tools:layout_editor_absoluteX="1dp"
+            tools:layout_editor_absoluteY="384dp" />
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
@@ -136,8 +140,8 @@
         android:id="@+id/buttonAvancarCadastroPet"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="112dp"
         android:backgroundTint="@color/light_blue"
         android:text="@string/avancar"
         android:textColor="@color/white"
@@ -147,8 +151,8 @@
 
     <ImageView
         android:id="@+id/imageEspecieCachorro"
-        android:layout_width="101dp"
-        android:layout_height="119dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="64dp"
@@ -160,8 +164,8 @@
 
     <ImageView
         android:id="@+id/imageEspecieGato"
-        android:layout_width="102dp"
-        android:layout_height="112dp"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         android:layout_marginStart="64dp"
         android:layout_marginTop="50dp"
         android:layout_marginEnd="64dp"

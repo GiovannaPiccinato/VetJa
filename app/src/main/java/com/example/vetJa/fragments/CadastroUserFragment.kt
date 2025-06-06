@@ -61,26 +61,20 @@ class CadastroUserFragment : Fragment() {
             return
         }
 
-        //mudar depois
-        if (binding.cepCadastroUser.text.isNullOrEmpty()) {
-            binding.cepCadastroUser.error = "Campo CPF é obrigatório"
-            return
-        }
-
-        if (binding.cepCadastroUser.text.toString().length < 11) {
-            binding.cepCadastroUser.error = "O CPF deve ter pelo menos 11 dígitos"
-            return
-        }
-
-        if (binding.numeroCasaCadastroUser.text.toString().isEmpty()) {
-            binding.numeroCasaCadastroUser.error = "O número da casa deve ter pelo menos 1 dígito"
-            return
-        }
-
-        if (binding.numeroCasaCadastroUser.text.isNullOrEmpty()) {
-            binding.numeroCasaCadastroUser.error = "Campo número da casa é obrigatório"
-            return
-        }
+//        if (binding.cepCadastroUser.text.toString().length < 11) {
+//            binding.cepCadastroUser.error = "O CPF deve ter pelo menos 11 dígitos"
+//            return
+//        }
+//
+//        if (binding.numeroCasaCadastroUser.text.toString().isEmpty()) {
+//            binding.numeroCasaCadastroUser.error = "O número da casa deve ter pelo menos 1 dígito"
+//            return
+//        }
+//
+//        if (binding.numeroCasaCadastroUser.text.isNullOrEmpty()) {
+//            binding.numeroCasaCadastroUser.error = "Campo número da casa é obrigatório"
+//            return
+//        }
 
 
 
@@ -91,20 +85,18 @@ class CadastroUserFragment : Fragment() {
 //            cep = binding.cepCadastroUser.text.toString(),
 //            endereco = binding.numeroCasaCadastroUser.text.toString(),
             telefone = binding.telCadastroUser.text.toString(),
-            cpf = binding.cepCadastroUser.text.toString(), // CPF is not provided in the form, using a placeholder
             idCliente = null,
         )
 
         val bundle = Bundle().apply {
             with(usuario) {
+                putString("idCliente", idCliente)
                 putString("nome", nome)
                 putString("senha", senha)
                 putString("email", email)
                 putString("telefone", telefone)
-                putString("cpf", cpf)
 //                putString("cep", cep)
 //                putString("endereco", endereco)
-                putString("idCliente", idCliente)
             }
         }
 

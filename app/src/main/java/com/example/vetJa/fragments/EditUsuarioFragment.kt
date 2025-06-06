@@ -6,7 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import com.example.vetJa.R
 import com.example.vetJa.databinding.FragmentEditUsuarioBinding
 import com.example.vetJa.models.user.User
 import com.example.vetJa.models.user.UserDTO
@@ -29,7 +28,6 @@ class EditUsuarioFragment : Fragment() {
         ususario = UserDTO(
             nome = "carregando...",
             email = "carregando...",
-            cpf = "carregando...",
             telefone = "carregando...",
             senha = "**********",
             idCliente = null // ID do cliente deve ser definido corretamente
@@ -38,10 +36,7 @@ class EditUsuarioFragment : Fragment() {
         return binding.root
     }
 
-
     private fun getUsuario() {
-
-
         val retroFitclient = RetrofitClient(requireContext().applicationContext)
 
         retroFitclient.api.getUserDTOById().enqueue(object : Callback<UserDTO> {
@@ -52,8 +47,7 @@ class EditUsuarioFragment : Fragment() {
                         binding.editNomeAtualizaUser.setText(userDTO.nome)
                         binding.editEmailAtualizaUser.setText(userDTO.email)
                         binding.editTelAtualizaUser.setText(userDTO.telefone)
-                        binding.editCepAtualizaUser.setText(userDTO.cpf)
-                        binding.editNumeroCasaAtualizaUser.setText(ususario.senha)
+                        binding.editSenhaAtualizaUser.setText(ususario.senha)
 
                         binding.buttonAvancarEdit.setOnClickListener {
                             updateUsuario(userDTO.idCliente)
@@ -78,9 +72,8 @@ class EditUsuarioFragment : Fragment() {
         ususario = UserDTO(
             nome = binding.editNomeAtualizaUser.text.toString(),
             email = binding.editEmailAtualizaUser.text.toString(),
-            cpf = binding.editCepAtualizaUser.text.toString(),
             telefone = binding.editTelAtualizaUser.text.toString(),
-            senha = binding.editNumeroCasaAtualizaUser.text.toString(), // Senha não é atualizada aqui
+            senha = if (binding.editSenhaAtualizaUser.text.toString() != "**********") null else binding.editSenhaAtualizaUser.text.toString(),
             idCliente = idCliente // ID do cliente deve ser definido corretamente
         )
 
@@ -90,6 +83,7 @@ class EditUsuarioFragment : Fragment() {
                     val updatedUser = response.body()
                     if (updatedUser != null) {
                         toast("Usuário atualizado com sucesso", requireContext())
+
                     } else {
                         toast("Erro ao atualizar usuário", requireContext())
                     }

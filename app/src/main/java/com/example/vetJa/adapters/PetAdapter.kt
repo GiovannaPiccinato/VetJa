@@ -30,15 +30,31 @@ class PetAdapter(
     override fun onBindViewHolder(holder: PetViewHolder, position: Int) {
         val pet = petList[position]
 
-        // definir a imagem pela especie
-        val imageResource = if (pet.gato == true) R.drawable.especiegato else R.drawable.especiecachorro
-
-
+        // Definir a imagem pela espécie
+        val imageResource = if (definePetImage(pet)) R.drawable.especiegato else R.drawable.especiecachorro
         holder.imgEspeciePet.setImageResource(imageResource)
-        holder.txtPetName.text = pet.nome
-        holder.txtPetInfo.text = "${pet.idade} | ${if (pet.macho == true) "Macho" else "Fêmea"} | ${if (pet.gato == true) "Gato" else "Cachorro"}"
+
+        // Definir os textos dinamicamente
+        holder.txtPetName.text = pet.nome ?: "Sem nome"
+
+        val sexo = if (definePetImage(pet)) "Macho" else "Fêmea"
+        val idade = pet.idade?.toString() ?: "-"
+        holder.txtPetInfo.text = "$sexo | $idade"
+
+        // Configurar os listeners
         holder.imgEditPet.setOnClickListener { onEditClick(pet) }
         holder.imgDeletePet.setOnClickListener { onDeleteClick(pet) }
     }
     override fun getItemCount() = petList.size
+
+    fun definePetImage(pet: PetDTO): Boolean {
+        return if (pet.gato == true) {
+            R.drawable.especiegato
+            true
+        } else {
+            R.drawable.especiecachorro
+            false
+        }
+    }
+
 }

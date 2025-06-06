@@ -153,57 +153,57 @@
             android:padding="12dp" />
     </androidx.cardview.widget.CardView>
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView4"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView3">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView4"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:cardElevation="2dp"-->
+<!--        app:cardUseCompatPadding="true"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cardView3">-->
 
-        <EditText
-            android:id="@+id/cepCadastroUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="postalAddress"
-            android:background="@null"
-            android:ems="10"
-            android:hint="@string/cepCadastroUser"
-            android:inputType="number"
-            android:padding="12dp" />
-    </androidx.cardview.widget.CardView>
+<!--        <EditText-->
+<!--            android:id="@+id/cepCadastroUser"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:autofillHints="postalAddress"-->
+<!--            android:background="@null"-->
+<!--            android:ems="10"-->
+<!--            android:hint="@string/cepCadastroUser"-->
+<!--            android:inputType="number"-->
+<!--            android:padding="12dp" />-->
+<!--    </androidx.cardview.widget.CardView>-->
 
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardView5"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardView4">
+<!--    <androidx.cardview.widget.CardView-->
+<!--        android:id="@+id/cardView5"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginStart="32dp"-->
+<!--        android:layout_marginTop="24dp"-->
+<!--        android:layout_marginEnd="32dp"-->
+<!--        app:cardCornerRadius="8dp"-->
+<!--        app:cardElevation="2dp"-->
+<!--        app:cardUseCompatPadding="true"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/cardView4">-->
 
-        <EditText
-            android:id="@+id/numeroCasaCadastroUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:autofillHints="postalAddress"
-            android:background="@null"
-            android:ems="10"
-            android:hint="@string/numeroCadastroUser"
-            android:inputType="number"
-            android:padding="12dp" />
-    </androidx.cardview.widget.CardView>
+<!--        <EditText-->
+<!--            android:id="@+id/numeroCasaCadastroUser"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:autofillHints="postalAddress"-->
+<!--            android:background="@null"-->
+<!--            android:ems="10"-->
+<!--            android:hint="@string/numeroCadastroUser"-->
+<!--            android:inputType="number"-->
+<!--            android:padding="12dp" />-->
+<!--    </androidx.cardview.widget.CardView>-->
 
     <Button
         android:id="@+id/buttonAvancarCadastro"

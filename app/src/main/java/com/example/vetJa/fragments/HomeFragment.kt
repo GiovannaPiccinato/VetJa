@@ -50,6 +50,7 @@ class HomeFragment : Fragment() {
             @SuppressLint("NotifyDataSetChanged")
             override fun onResponse(call: Call<List<Service>>, response: Response<List<Service>>) {
                 Log.d("HomeFragment", "onResponse chamado: code=${response.code()}")
+                if (!isAdded) return // Evita IllegalStateException
                 if (response.isSuccessful && response.body() != null) {
                     servicos.clear()
                     servicos.addAll(response.body()!!)

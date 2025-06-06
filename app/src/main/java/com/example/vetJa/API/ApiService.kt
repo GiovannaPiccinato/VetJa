@@ -12,6 +12,7 @@ import retrofit2.Call
 import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
+import retrofit2.http.Header
 import retrofit2.http.POST
 import retrofit2.http.PUT
 import retrofit2.http.Path
@@ -45,14 +46,20 @@ interface ApiService {
     @POST("/users/delete")
     fun deleteUser(@Body dto: UserDTO): Call<LoginResponse>;
 
-    @GET("/pets/all")
-    fun getListPets(): Call<List<PetDTO>>
+    @GET("/animals/byUser/{userId}")
+    fun getListPets(@Path("userId") userId: String): Call<List<PetDTO>>
 
-    @DELETE("/pets/{id}")
-    fun deletePet(@Path("id") petId: Int, @Header("Authorization") token: String): Call<Void>
+    @DELETE("/animals/{id}")
+    fun deletePet(@Path("id") petId: String): Call<Void>
 
     @POST("/animals/animal")
     fun createPet(@Body dto: PetDTO): Call<PetDTO>
+
+    @PUT("/animals/animal")
+    fun updatePet(@Body dto: PetDTO): Call<PetDTO>
+
+    @GET("/animals/animal/{id}")
+    fun getPetById(@Path("id") petId: String): Call<PetDTO>
 
 
 }

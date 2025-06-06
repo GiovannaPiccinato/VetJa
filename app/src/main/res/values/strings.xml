@@ -48,4 +48,6 @@
     <string name="nao">Não</string>
     <string name="titulo_dialog">Deseja adicionar mais um Pet?</string>
     <string name="hello_blank_fragment_home">Hello Blank Fragment Home</string>
+    <string name="meus_pets">Meus Pets</string>
+    <string name="lista_de_pets">Lista de Pets</string>
 </resources>

@@ -35,7 +35,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.cardview.widget.CardView
-        android:id="@+id/cardCep"
+        android:id="@+id/cardSenha"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="32dp"
@@ -50,38 +50,12 @@
         app:layout_constraintTop_toBottomOf="@+id/cardEmail">
 
         <EditText
-            android:id="@+id/editCepAtualizaUser"
+            android:id="@+id/editSenhaAtualizaUser"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@null"
             android:ems="10"
-            android:hint="@string/cepCadastroUser"
-            android:inputType="number"
-            android:padding="12dp" />
-    </androidx.cardview.widget.CardView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardNumero"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
-        android:layout_marginTop="24dp"
-        android:layout_marginEnd="32dp"
-        app:cardCornerRadius="8dp"
-        app:cardElevation="2dp"
-        app:cardUseCompatPadding="true"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cardCep">
-
-        <EditText
-            android:id="@+id/editNumeroCasaAtualizaUser"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@null"
-            android:ems="10"
-            android:hint="@string/numeroCadastroUser"
+            android:hint="@string/senhaCadastroUser"
             android:inputType="number"
             android:padding="12dp" />
     </androidx.cardview.widget.CardView>

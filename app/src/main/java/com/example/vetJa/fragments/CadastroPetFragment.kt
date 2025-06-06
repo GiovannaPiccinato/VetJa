@@ -11,7 +11,9 @@ import android.widget.Button
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
 import com.example.vetJa.R
+import com.example.vetJa.activitys.IndexActivity
 import com.example.vetJa.activitys.LoginActivity
 import com.example.vetJa.databinding.FragmentCadastroPetBinding
 import com.example.vetJa.models.Pet.PetDTO
@@ -41,7 +43,6 @@ class CadastroPetFragment : Fragment() {
                 nome = args.getString("nome"),
                 senha = args.getString("senha"),
                 email = args.getString("email"),
-                cpf = args.getString("cpf"),
                 telefone = args.getString("telefone"),
             )
         } ?: Log.d("CadastroPetFragment", "Arguments are null")
@@ -100,16 +101,18 @@ class CadastroPetFragment : Fragment() {
             buttonSim.setOnClickListener {
                 saveUser(usuario)
                 Log.d("CustomDialog", "Entrada do usuário: Confirmar")
-                startActivity(Intent(requireContext(), LoginActivity::class.java))
-                requireActivity().finish()
+//                startActivity(Intent(requireContext(), IndexActivity::class.java))
+                val navController = findNavController()
+                navController.navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment)
+
                 dialog.dismiss()
+
             }
 
             buttonNao.setOnClickListener {
                 saveUser(usuario)
                 Log.d("CustomDialog", "Entrada do usuário: Cancelar")
-                startActivity(Intent(requireContext(), LoginActivity::class.java))
-                requireActivity().finish()
+                startActivity(Intent(requireContext(), IndexActivity::class.java))
                 dialog.dismiss()
             }
 
@@ -161,8 +164,13 @@ class CadastroPetFragment : Fragment() {
                         idCliente = userResponse.signIn.user.idCliente,
                         idAnimal = null,
                         nome = binding.nomeCadastroPet.text.toString(),
-                        idade = binding.idadePet.text.toString(),
-                        raca = if (especie) "Gato" else "Cachorro"
+                        gato = especie,
+                        idade = binding.idadePet.text.toString().toIntOrNull(),
+                        macho = if (binding.spinnerSexoPet.selectedItem.toString() == "Macho") {
+                            true
+                        } else {
+                            false
+                        },
                     )
                     savePet(pet)
                     toast("Usuário salvo com sucesso", requireContext())

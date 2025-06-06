@@ -3,15 +3,14 @@
 
     <item
         android:id="@+id/homeFragment"
-        android:enabled="true"
         android:icon="@drawable/menu_servico"
         android:title="@string/servicos" />
     <item
         android:id="@+id/userProfileFragment"
-        android:icon="@drawable/menu_perfil"
+        android:icon="@drawable/menu_perfil_branco"
         android:title="@string/configuracao" />
     <item
         android:id="@+id/petsList"
         android:icon="@drawable/menu_pet"
-        android:title="Meus Pets" />
+        android:title="@string/meus_pets" />
 </menu>
