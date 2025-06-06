@@ -101,9 +101,9 @@ class CadastroPetFragment : Fragment() {
             buttonSim.setOnClickListener {
                 saveUser(usuario)
                 Log.d("CustomDialog", "Entrada do usuário: Confirmar")
-//                startActivity(Intent(requireContext(), IndexActivity::class.java))
-                val navController = findNavController()
-                navController.navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment)
+                startActivity(Intent(requireContext(), IndexActivity::class.java))
+//                val navController = findNavController()
+//                navController.navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment)
 
                 dialog.dismiss()
 
