@@ -21,11 +21,15 @@ private const val ARG_PARAM2 = "param2"
 class EditUsuarioFragment : Fragment() {
 
     lateinit var binding: FragmentEditUsuarioBinding
-    private lateinit var ususario: UserDTO
+    private lateinit var usuario: UserDTO
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         binding = FragmentEditUsuarioBinding.inflate(inflater, container, false)
-        ususario = UserDTO(
+        binding.buttonVoltarEdit.setOnClickListener { // botão de voltar para a tela de perfil
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        usuario = UserDTO(
             nome = "carregando...",
             email = "carregando...",
             telefone = "carregando...",
@@ -47,7 +51,7 @@ class EditUsuarioFragment : Fragment() {
                         binding.editNomeAtualizaUser.setText(userDTO.nome)
                         binding.editEmailAtualizaUser.setText(userDTO.email)
                         binding.editTelAtualizaUser.setText(userDTO.telefone)
-                        binding.editSenhaAtualizaUser.setText(ususario.senha)
+                        binding.editSenhaAtualizaUser.setText(usuario.senha)
 
                         binding.buttonAvancarEdit.setOnClickListener {
                             updateUsuario(userDTO.idCliente)
@@ -69,7 +73,7 @@ class EditUsuarioFragment : Fragment() {
     fun updateUsuario(idCliente: String?) {
         val retroFitclient = RetrofitClient(requireContext().applicationContext)
 
-        ususario = UserDTO(
+        usuario = UserDTO(
             nome = binding.editNomeAtualizaUser.text.toString(),
             email = binding.editEmailAtualizaUser.text.toString(),
             telefone = binding.editTelAtualizaUser.text.toString(),
@@ -77,7 +81,7 @@ class EditUsuarioFragment : Fragment() {
             idCliente = idCliente // ID do cliente deve ser definido corretamente
         )
 
-        retroFitclient.api.updateUser(ususario).enqueue(object : Callback<User> {
+        retroFitclient.api.updateUser(usuario).enqueue(object : Callback<User> {
             override fun onResponse(call: Call<User>, response: Response<User>) {
                 if (response.isSuccessful) {
                     val updatedUser = response.body()

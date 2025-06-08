@@ -10,7 +10,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitClient(private val context: Context) {
   
-    private val _baseUrl = "http://192.168.68.107:8000"
+    private val _baseUrl = "http://10.135.111.20:8000"
 
     private val client = OkHttpClient.Builder()
         .addInterceptor(AuthInterceptor(context))

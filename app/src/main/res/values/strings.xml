@@ -12,8 +12,8 @@
     <string name="favorite">favorite</string>
     <string name="icon">icon</string>
     <string name="cadastrar_atualizar_usuario">Cadastrar/Atualizar Usuario</string>
-    <string name="nome">nome</string>
-    <string name="cpf">cpf</string>
+    <string name="nome">Nome</string>
+    <string name="cpf">CPF</string>
     <string name="senha">Senha</string>
     <string name="telefone">Telefone</string>
     <string name="termos">Termos de Uso</string>
@@ -29,6 +29,7 @@
     <string name="emailCadastroUser">Seu E-mail</string>
     <string name="cepCadastroUser">Seu Cep</string>
     <string name="numeroCadastroUser">Seu N°Residencial</string>
+    <string name="voltar">Voltar</string>
     <string name="avancar">Avançar</string>
     <string name="textCadastroUser">Precisamos de algumas informações suas para prestar o melhor atendimento.</string>
     <string name="introducao">A VeterinariosJA é a sua rede  de médicos veterinários Home Care, somos especializados no atendimento domiciliar de animais de pequeno porte com assistência personalizada e de excelência para o seu filho de 4 patas.</string>
