@@ -14,10 +14,8 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.vetJa.R
 import com.example.vetJa.activitys.IndexActivity
-import com.example.vetJa.activitys.LoginActivity
 import com.example.vetJa.databinding.FragmentCadastroPetBinding
 import com.example.vetJa.models.Pet.PetDTO
-import com.example.vetJa.models.login.LoginResponse
 import com.example.vetJa.models.user.UserDTO
 import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
@@ -99,21 +97,39 @@ class CadastroPetFragment : Fragment() {
             val buttonNao = dialogView.findViewById<Button>(R.id.dialogBtnNao)
 
             buttonSim.setOnClickListener {
-                saveUser(usuario)
-                Log.d("CustomDialog", "Entrada do usuário: Confirmar")
-                startActivity(Intent(requireContext(), IndexActivity::class.java))
-//                val navController = findNavController()
-//                navController.navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment)
+                saveUser(usuario) { userResponse ->
+                    val sharedPreferences = requireContext().getSharedPreferences("user_token", Context.MODE_PRIVATE)
+                    sharedPreferences.edit {
+                        putString("user_token", userResponse.signIn.token)
+                    }
 
-                dialog.dismiss()
-
+                    if (sharedPreferences.getString("user_token", "").isNullOrEmpty()) {
+                        Log.e("CadastroPetFragment", "Token não encontrado nos SharedPreferences")
+                        toast("Erro ao salvar usuário: Token não encontrado", requireContext())
+                        findNavController().navigate(R.id.action_cadastroPetFragment_to_cadastroUserFragment)
+                    } else {
+                        Log.d("CadastroPetFragment", "Token salvo com sucesso: ${sharedPreferences.getString("user_token", "")}")
+                        findNavController().navigate(R.id.action_cadastroPetFragment_to_listPetFragment)
+                    }
+                    dialog.dismiss()
+                }
             }
 
             buttonNao.setOnClickListener {
-                saveUser(usuario)
-                Log.d("CustomDialog", "Entrada do usuário: Cancelar")
-                startActivity(Intent(requireContext(), IndexActivity::class.java))
-                dialog.dismiss()
+                saveUser(usuario) { userResponse ->
+                    val sharedPreferences = requireContext().getSharedPreferences("user_token", Context.MODE_PRIVATE)
+                    sharedPreferences.edit {
+                        putString("user_token", userResponse.signIn.token)
+                    }
+
+                    if (sharedPreferences.getString("user_token", "").isNullOrEmpty()) {
+                        Log.e("CadastroPetFragment", "Token não encontrado nos SharedPreferences")
+                        toast("Erro ao salvar usuário: Token não encontrado", requireContext())
+                    } else {
+                        findNavController().navigate(R.id.action_cadastroPetFragment_to_indexActivity)
+                    }
+                    dialog.dismiss()
+                }
             }
 
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
@@ -140,9 +156,7 @@ class CadastroPetFragment : Fragment() {
         }
     }
 
-    private fun saveUser(usuario: UserDTO?) {
-
-        Log.d("CadastroPetFragment", "Usuário: $usuario")
+    private fun saveUser(usuario: UserDTO?, onSuccess: (UserResponse) -> Unit) {
         val apiService = retrofitClient.api
         apiService.createUser(usuario!!).enqueue(object : retrofit2.Callback<UserResponse> {
             override fun onResponse(
@@ -156,10 +170,11 @@ class CadastroPetFragment : Fragment() {
                         putString("user_token", userResponse.signIn.token)
                     }
 
-                    Log.d("token-shared", sharedPreferences.getString("user_token", "").toString())
 
-                    toast("Olá, ${userResponse.signIn.user.nome}, Seja bem-vindo(a)!", requireContext())
-
+                    toast(
+                        "Olá, ${userResponse.signIn.user.nome}, Seja bem-vindo(a)!",
+                        requireContext()
+                    )
                     val pet = PetDTO(
                         idCliente = userResponse.signIn.user.idCliente,
                         idAnimal = null,
@@ -174,9 +189,14 @@ class CadastroPetFragment : Fragment() {
                     )
                     savePet(pet)
                     toast("Usuário salvo com sucesso", requireContext())
+                    onSuccess(userResponse)
                 } else {
-                    Log.e("CadastroPetFragment", "Erro ao salvar usuário: ${response.errorBody()?.string()}")
-                    toast("Erro ao salvar usuário: resposta inválida", requireContext())
+                    Log.e(
+                        "CadastroPetFragment",
+                        "Erro ao salvar usuário: ${response.errorBody()?.string()}"
+                    )
+                    toast("Erro ao salvar usuário: ${response.errorBody()}", requireContext())
+                    findNavController().navigate(R.id.action_cadastroPetFragment_to_cadastroUserFragment)
                 }
             }
 

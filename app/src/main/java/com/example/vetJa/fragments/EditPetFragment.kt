@@ -108,7 +108,7 @@ class EditPetFragment : Fragment() {
         Log.d("EditPetFragment", "Atualizando pet: $pet")
 
         val retrofitClient = RetrofitClient(requireContext().applicationContext).api
-        retrofitClient.updatePet(pet).enqueue(object : retrofit2.Callback<PetDTO> {
+        retrofitClient.updatePet(pet.idAnimal.toString(), pet).enqueue(object : retrofit2.Callback<PetDTO> {
             override fun onResponse(call: retrofit2.Call<PetDTO>, response: retrofit2.Response<PetDTO>) {
                 if (response.isSuccessful) {
                     Log.d("EditPetFragment", "Pet atualizado com sucesso.")

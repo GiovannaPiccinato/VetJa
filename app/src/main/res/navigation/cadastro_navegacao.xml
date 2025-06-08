@@ -18,5 +18,24 @@
         android:id="@+id/cadastroPetFragment"
         android:name="com.example.vetJa.fragments.CadastroPetFragment"
         android:label="fragment_cadastro_pet"
-        tools:layout="@layout/fragment_cadastro_pet" />
+        tools:layout="@layout/fragment_cadastro_pet" >
+        <action
+            android:id="@+id/action_cadastroPetFragment_to_cadastroUserFragment"
+            app:destination="@id/cadastroUserFragment" />
+        <action
+            android:id="@+id/action_cadastroPetFragment_to_indexActivity"
+            app:destination="@id/indexActivity" />
+        <action
+            android:id="@+id/action_cadastroPetFragment_to_listPetFragment"
+            app:destination="@id/listPetFragment" />
+    </fragment>
+    <activity
+        android:id="@+id/indexActivity"
+        android:name="com.example.vetJa.activitys.IndexActivity"
+        android:label="activity_index"
+        tools:layout="@layout/activity_index" />
+    <fragment
+        android:id="@+id/listPetFragment"
+        android:name="com.example.vetJa.fragments.ListPetFragment"
+        android:label="ListPetFragment" />
 </navigation>
