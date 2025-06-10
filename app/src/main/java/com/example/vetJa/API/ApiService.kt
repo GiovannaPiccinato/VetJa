@@ -49,7 +49,7 @@ interface ApiService {
     @GET("/animals/byUser/{userId}")
     fun getListPets(@Path("userId") userId: String): Call<List<PetDTO>>
 
-    @POST("/animals/{id}")
+    @DELETE("/animals/animal/{id}")
     fun deletePet(@Path("id") petId: String): Call<Void>
 
     @POST("/animals/animal")
@@ -60,6 +60,5 @@ interface ApiService {
 
     @GET("/animals/animal/{id}")
     fun getPetById(@Path("id") petId: String): Call<PetDTO>
-
 
 }
