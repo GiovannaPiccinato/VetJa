@@ -55,7 +55,7 @@
         android:layout_width="240dp"
         android:layout_height="0dp"
         android:layout_marginTop="100dp"
-        android:backgroundTint="@color/dark_blue"
+        android:backgroundTint="@color/blue"
         android:maxHeight="48dp"
         android:text="@string/login"
         app:cornerRadius="10dp"

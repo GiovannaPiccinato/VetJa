@@ -53,7 +53,7 @@ class EditUsuarioFragment : Fragment() {
                         binding.editTelAtualizaUser.setText(userDTO.telefone)
                         binding.editSenhaAtualizaUser.setText(usuario.senha)
 
-                        binding.buttonAvancarEdit.setOnClickListener {
+                        binding.buttonAtualizarEdit.setOnClickListener {
                             updateUsuario(userDTO.idCliente)
                         }
                     } else {

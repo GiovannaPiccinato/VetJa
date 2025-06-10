@@ -1,6 +1,7 @@
 package com.example.vetJa.activitys
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -8,6 +9,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.vetJa.R
 import com.example.vetJa.databinding.ActivityIntroducaoBinding
+import androidx.core.net.toUri
 
 class IntroducaoActivity : AppCompatActivity() {
 
@@ -30,6 +32,9 @@ class IntroducaoActivity : AppCompatActivity() {
 
         binding.textLoginLink.setOnClickListener {
             startActivity(Intent(this, LoginActivity::class.java))
+        }
+        binding.textTermosUso.setOnClickListener {
+            startActivity(Intent(Intent.ACTION_VIEW, "https://www.veterinariosja.com.br".toUri()))
         }
 
     }

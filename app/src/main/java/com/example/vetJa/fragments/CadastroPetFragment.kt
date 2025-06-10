@@ -8,6 +8,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.edit
 import androidx.fragment.app.Fragment
@@ -20,6 +21,9 @@ import com.example.vetJa.models.user.UserDTO
 import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
 import com.example.vetJa.utils.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class CadastroPetFragment : Fragment() {
 
@@ -135,6 +139,10 @@ class CadastroPetFragment : Fragment() {
             dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
             dialog.show()
 
+        }
+
+        binding.buttonVoltarEdit.setOnClickListener { // botão de voltar para a tela anterior
+            requireActivity().supportFragmentManager.popBackStack()
         }
     }
 

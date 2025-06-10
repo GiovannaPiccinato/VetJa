@@ -42,7 +42,7 @@ class ServicoAdapter(private val servicos: List<Service>) :
 
                     val intent = Intent(Intent.ACTION_VIEW)
                     intent.data = uri
-                    intent.setPackage("com.whatsapp")
+                    //intent.setPackage("com.whatsapp")
 
                     // Verifica se o WhatsApp está instalado
                     if (intent.resolveActivity(context.packageManager) != null) {

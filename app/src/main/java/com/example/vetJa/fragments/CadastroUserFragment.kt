@@ -1,5 +1,6 @@
 package com.example.vetJa.fragments
 
+import android.content.Intent
 import android.os.Bundle
 
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.vetJa.R
+import com.example.vetJa.activitys.IntroducaoActivity
 import com.example.vetJa.databinding.FragmentCadastroUserBinding
 import com.example.vetJa.models.user.UserDTO
 
@@ -21,8 +23,15 @@ class CadastroUserFragment : Fragment() {
             guardarUsuario()
         }
 
+        binding.buttonVoltarEdit.setOnClickListener {
+            val intent = Intent(requireContext(), IntroducaoActivity::class.java)
+            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+            requireActivity().finish() // finaliza a activity atual e volta para a anterior
+        }
         return binding.root
     }
+
 
     private fun guardarUsuario() {
 
@@ -75,7 +84,6 @@ class CadastroUserFragment : Fragment() {
 //            binding.numeroCasaCadastroUser.error = "Campo número da casa é obrigatório"
 //            return
 //        }
-
 
 
         val usuario = UserDTO(

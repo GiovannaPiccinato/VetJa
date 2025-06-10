@@ -137,24 +137,43 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/buttonAvancarCadastroPet"
+        android:id="@+id/buttonVoltarEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="36dp"
-        android:layout_marginBottom="112dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/light_blue"
-        android:text="@string/avancar"
+        android:text="@string/voltar"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonAvancarCadastroPet"
+        app:layout_constraintTop_toBottomOf="@+id/imageEspecieGato"
+        app:layout_constraintVertical_bias="0.106" />
+
+    <Button
+        android:id="@+id/buttonAvancarCadastroPet"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="@color/light_blue"
+        android:text="@string/atualizar"
+        android:textColor="@color/white"
+        app:cornerRadius="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEspecieGato"
+        app:layout_constraintVertical_bias="0.106" />
 
     <ImageView
         android:id="@+id/imageEspecieCachorro"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:src="@drawable/especiecachorro"
         app:layout_constraintEnd_toEndOf="parent"
@@ -167,7 +186,7 @@
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="32dp"
         android:layout_marginEnd="64dp"
         android:src="@drawable/especiegato"
         app:layout_constraintEnd_toEndOf="parent"

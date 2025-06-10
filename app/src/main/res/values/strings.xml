@@ -31,6 +31,7 @@
     <string name="numeroCadastroUser">Seu N°Residencial</string>
     <string name="voltar">Voltar</string>
     <string name="avancar">Avançar</string>
+    <string name="atualizar">Atualizar</string>
     <string name="textCadastroUser">Precisamos de algumas informações suas para prestar o melhor atendimento.</string>
     <string name="introducao">A VeterinariosJA é a sua rede  de médicos veterinários Home Care, somos especializados no atendimento domiciliar de animais de pequeno porte com assistência personalizada e de excelência para o seu filho de 4 patas.</string>
     <string name="textAtualizaUser">Atualize as informações abaixo, em seguida clique em avançar para  salvar as alterações.</string>

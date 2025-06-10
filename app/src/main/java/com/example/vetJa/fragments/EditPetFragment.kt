@@ -11,6 +11,7 @@ import com.example.vetJa.R
 import com.example.vetJa.databinding.FragmentEditPetBinding
 import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.retroClient.RetrofitClient
+import com.example.vetJa.utils.toast
 
 class EditPetFragment : Fragment() {
 
@@ -51,6 +52,9 @@ class EditPetFragment : Fragment() {
 
         binding.buttonAvancarCadastroPet.setOnClickListener {
             updateNewPet()
+        }
+        binding.buttonVoltarEdit.setOnClickListener { // botão de voltar para a tela anterior
+            requireActivity().supportFragmentManager.popBackStack()
         }
 
         return binding.root
@@ -111,9 +115,9 @@ class EditPetFragment : Fragment() {
         retrofitClient.updatePet(pet.idAnimal.toString(), pet).enqueue(object : retrofit2.Callback<PetDTO> {
             override fun onResponse(call: retrofit2.Call<PetDTO>, response: retrofit2.Response<PetDTO>) {
                 if (response.isSuccessful) {
-                    Log.d("EditPetFragment", "Pet atualizado com sucesso.")
+                    toast("Pet atualizado com sucesso.",requireContext())
                 } else {
-                    Log.e("EditPetFragment", "Erro ao atualizar o pet: ${response.code()}")
+                    toast("Erro ao atualizar o pet", requireContext())
                 }
             }
 
@@ -140,4 +144,5 @@ class EditPetFragment : Fragment() {
             binding.imageEspecieGato.setBackgroundResource(R.drawable.border_default)
         }
     }
+
 }

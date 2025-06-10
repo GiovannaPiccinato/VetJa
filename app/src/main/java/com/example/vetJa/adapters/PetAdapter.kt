@@ -31,30 +31,20 @@ class PetAdapter(
         val pet = petList[position]
 
         // Definir a imagem pela espécie
-        val imageResource = if (definePetImage(pet)) R.drawable.especiegato else R.drawable.especiecachorro
+        val imageResource = if (pet.gato == true) R.drawable.especiegato else R.drawable.especiecachorro
         holder.imgEspeciePet.setImageResource(imageResource)
 
         // Definir os textos dinamicamente
         holder.txtPetName.text = pet.nome ?: "Sem nome"
 
-        val sexo = if (definePetImage(pet)) "Macho" else "Fêmea"
+        val sexo = if (pet.macho == true) "Macho" else "Fêmea"
         val idade = pet.idade?.toString() ?: "-"
-        holder.txtPetInfo.text = "$sexo | $idade"
+        holder.txtPetInfo.text = "$sexo | $idade anos"
 
         // Configurar os listeners
         holder.imgEditPet.setOnClickListener { onEditClick(pet) }
         holder.imgDeletePet.setOnClickListener { onDeleteClick(pet) }
     }
     override fun getItemCount() = petList.size
-
-    fun definePetImage(pet: PetDTO): Boolean {
-        return if (pet.gato == true) {
-            R.drawable.especiegato
-            true
-        } else {
-            R.drawable.especiecachorro
-            false
-        }
-    }
 
 }
