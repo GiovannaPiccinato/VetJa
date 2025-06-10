@@ -9,14 +9,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vetJa.R
 import com.example.vetJa.adapters.PetAdapter
+import com.example.vetJa.databinding.FragmentPetListBinding
 import com.example.vetJa.models.Pet.Pet
 import com.example.vetJa.models.Pet.PetDTO
 import com.example.vetJa.models.user.User
 import com.example.vetJa.models.user.UserDTO
+import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,23 +28,30 @@ import kotlin.collections.addAll
 import kotlin.text.clear
 
 class ListPetFragment : Fragment() {
+    private lateinit var binding: FragmentPetListBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PetAdapter
     private val pet = mutableListOf<PetDTO>()
+    private var user: UserDTO ?= null
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        return inflater.inflate(R.layout.fragment_pet_list, container, false)
+        binding = FragmentPetListBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         Log.d("ListPetFragment", "onViewCreated chamado")
 
-        recyclerView = view.findViewById(R.id.rvPetList)
+        binding.addPet.setOnClickListener {
+            criarPet()
+        }
+
+        recyclerView = binding.rvPetList
         recyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
         recyclerView.setHasFixedSize(true)
         adapter = PetAdapter(
@@ -114,9 +124,9 @@ class ListPetFragment : Fragment() {
             .enqueue(object : Callback<UserDTO> {
                 override fun onResponse(call: Call<UserDTO>, response: Response<UserDTO>) {
                     if (response.isSuccessful && response.body() != null) {
-                        val user = response.body()
+                         user = response.body()
                         if (user != null) {
-                            apiService.getListPets(user.idCliente.toString())
+                            apiService.getListPets(user!!.idCliente.toString())
                                 .enqueue(object : Callback<List<PetDTO>> {
                                     @SuppressLint("NotifyDataSetChanged")
                                     override fun onResponse(
@@ -184,6 +194,10 @@ class ListPetFragment : Fragment() {
                         .show()
                 }
             })
+    }
+
+    private fun criarPet() {
+        findNavController().navigate(R.id.action_listPetFragment_to_cadastroPetFragment)
     }
 
 }

@@ -1,23 +1,30 @@
 package com.example.vetJa.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.edit
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.vetJa.R
 import com.example.vetJa.activitys.IntroducaoActivity
 import com.example.vetJa.databinding.FragmentCadastroUserBinding
 import com.example.vetJa.models.user.UserDTO
+import com.example.vetJa.models.user.UserResponse
+import com.example.vetJa.retroClient.RetrofitClient
+import com.example.vetJa.utils.toast
 
 class CadastroUserFragment : Fragment() {
 
     private lateinit var binding: FragmentCadastroUserBinding
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        super.onCreate(savedInstanceState)
         binding = FragmentCadastroUserBinding.inflate(inflater, container, false)
         binding.buttonAvancarCadastro.setOnClickListener {
             guardarUsuario()
@@ -56,7 +63,7 @@ class CadastroUserFragment : Fragment() {
         }
 
         if (binding.telCadastroUser.text.toString().length < 10) {
-            binding.telCadastroUser.error = "O telefone deve ter pelo menos 10 dígitos"
+            binding.telCadastroUser.error = "O telefone deve ter pelo menos 10 dígitos "
             return
         }
 
@@ -107,9 +114,38 @@ class CadastroUserFragment : Fragment() {
 //                putString("endereco", endereco)
             }
         }
-
-        val navController = findNavController()
-        navController.navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment, bundle)
-
+        saveUser(usuario,bundle)
     }
+
+    // função para cadastrar o usuario
+    private fun saveUser(usuario: UserDTO?, bundle: Bundle, onSuccess: (UserResponse) -> Unit = {}) {
+        val apiService = RetrofitClient(requireContext()).api
+
+        apiService.createUser(usuario!!).enqueue(object : retrofit2.Callback<UserResponse> {
+            override fun onResponse(call: retrofit2.Call<UserResponse>, response: retrofit2.Response<UserResponse>) {
+                val userResponse = response.body()
+                if (response.isSuccessful && userResponse != null) {
+                    val sharedPreferences = requireContext().getSharedPreferences("user_token", Context.MODE_PRIVATE)
+                    sharedPreferences.edit {
+                        putString("user_token", userResponse.signIn.token)
+                    }
+
+                    toast("Olá, ${userResponse.signIn.user.nome}, Seja bem-vindo(a)!", requireContext())
+                    onSuccess(userResponse)
+
+                    findNavController().navigate(R.id.action_cadastroUserFragment_to_cadastroPetFragment, bundle)
+
+                } else {
+                    Log.e("CadastroUserFragment", "Erro ao salvar usuário: ${response.errorBody()?.string()}")
+                    toast("Erro ao salvar usuário: ${response.errorBody()?.string()}", requireContext())
+                }
+            }
+
+            override fun onFailure(call: retrofit2.Call<UserResponse>, t: Throwable) {
+                Log.e("CadastroUserFragment", "Falha ao salvar usuário: ${t.message}", t)
+                toast("Falha na conexão ao tentar salvar usuário: ${t.message}", requireContext())
+            }
+        })
+    }
+
 }

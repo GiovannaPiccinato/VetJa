@@ -9,33 +9,47 @@
         android:id="@+id/cadastroUserFragment"
         android:name="com.example.vetJa.fragments.CadastroUserFragment"
         android:label="fragment_cadastro_user"
-        tools:layout="@layout/fragment_cadastro_user" >
+        tools:layout="@layout/fragment_cadastro_user">
         <action
             android:id="@+id/action_cadastroUserFragment_to_cadastroPetFragment"
             app:destination="@id/cadastroPetFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/cadastroPetFragment"
         android:name="com.example.vetJa.fragments.CadastroPetFragment"
         android:label="fragment_cadastro_pet"
-        tools:layout="@layout/fragment_cadastro_pet" >
+        tools:layout="@layout/fragment_cadastro_pet">
         <action
             android:id="@+id/action_cadastroPetFragment_to_cadastroUserFragment"
-            app:destination="@id/cadastroUserFragment" />
+            app:destination="@id/cadastroUserFragment"
+            app:popUpTo="@id/cadastroUserFragment"
+            app:popUpToInclusive="false" />
+
         <action
             android:id="@+id/action_cadastroPetFragment_to_indexActivity"
             app:destination="@id/indexActivity" />
+
         <action
             android:id="@+id/action_cadastroPetFragment_to_listPetFragment"
-            app:destination="@id/listPetFragment" />
+            app:destination="@id/listPetFragment"
+            app:popUpTo="@id/listPetFragment"
+            app:popUpToInclusive="true" />
     </fragment>
+
     <activity
         android:id="@+id/indexActivity"
         android:name="com.example.vetJa.activitys.IndexActivity"
         android:label="activity_index"
         tools:layout="@layout/activity_index" />
+
     <fragment
         android:id="@+id/listPetFragment"
         android:name="com.example.vetJa.fragments.ListPetFragment"
-        android:label="ListPetFragment" />
+        android:label="ListPetFragment"
+        tools:layout="@layout/fragment_pet_list">
+        <action
+            android:id="@+id/action_listPetFragment_to_cadastroPetFragment"
+            app:destination="@id/cadastroPetFragment" />
+    </fragment>
 </navigation>
