@@ -29,6 +29,15 @@ class CadastroPetFragment : Fragment() {
     var usuario: UserDTO? = null
     private lateinit var adapter: PetAdapter
     private val pet = mutableListOf<PetDTO>()
+    private var foraFluxoCadastro: Boolean = false
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            // Corrija o nome do argumento para "foraFluxoCadastro"
+            foraFluxoCadastro = it.getBoolean("foraFluxoCadastro", false)
+        }
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -75,37 +84,59 @@ class CadastroPetFragment : Fragment() {
                 return@setOnClickListener
             }
 
-            val dialogView = layoutInflater.inflate(R.layout.dialog_custom, null)
-            val dialog = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
-                .setView(dialogView)
-                .create()
-
-            val buttonSim = dialogView.findViewById<Button>(R.id.dialogBtnSim)
-            val buttonNao = dialogView.findViewById<Button>(R.id.dialogBtnNao)
-
-            buttonSim.setOnClickListener {
-                val pet = createPetDTO()
-                savePet(pet) {
-                    findNavController().navigate(R.id.action_cadastroPetFragment_to_listPetFragment)
-                }
-                dialog.dismiss()
+            if (foraFluxoCadastro) {
+                salvarPetDireto()
+            } else {
+                confirmarCadastroPet()
             }
-
-            buttonNao.setOnClickListener {
-                val pet = createPetDTO()
-                savePet(pet) {
-                    findNavController().navigate(R.id.action_cadastroPetFragment_to_indexActivity)
-                }
-                dialog.dismiss()
-            }
-
-            dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
-            dialog.show()
         }
 
         binding.buttonVoltarEdit.setOnClickListener {
             findNavController().popBackStack()
         }
+    }
+
+    private fun salvarPetDireto() {
+        val pet = createPetDTO()
+        savePet(pet) {
+            // Volta para a tela anterior de forma segura
+            requireActivity().runOnUiThread {
+                requireActivity().onBackPressedDispatcher.onBackPressed()
+            }
+        }
+    }
+
+    private fun confirmarCadastroPet() {
+        val dialogView = layoutInflater.inflate(R.layout.dialog_custom, null)
+        val dialog = AlertDialog.Builder(requireContext(), R.style.CustomAlertDialog)
+            .setView(dialogView)
+            .create()
+
+        val buttonSim = dialogView.findViewById<Button>(R.id.dialogBtnSim)
+        val buttonNao = dialogView.findViewById<Button>(R.id.dialogBtnNao)
+
+        buttonSim.setOnClickListener {
+            val pet = createPetDTO()
+            savePet(pet) {
+                if (isAdded) {
+                    findNavController().navigate(R.id.action_cadastroPetFragment_to_listPetFragment)
+                }
+            }
+            dialog.dismiss()
+        }
+
+        buttonNao.setOnClickListener {
+            val pet = createPetDTO()
+            savePet(pet) {
+                if (isAdded) {
+                    findNavController().navigate(R.id.action_cadastroPetFragment_to_indexActivity)
+                }
+            }
+            dialog.dismiss()
+        }
+
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+        dialog.show()
     }
 
     private fun createPetDTO(): PetDTO {
@@ -129,13 +160,8 @@ class CadastroPetFragment : Fragment() {
             override fun onResponse(call: Call<PetDTO>, response: Response<PetDTO>) {
                 if (response.isSuccessful) {
                     toast("Pet salvo com sucesso", requireContext())
-                    // Notificar que um novo pet foi criado
-                    findNavController().previousBackStackEntry?.savedStateHandle?.set(
-                        "pet_created",
-                        true
-                    )
-                    // Navegar para a lista de pets
-                    findNavController().navigate(R.id.action_cadastroPetFragment_to_listPetFragment)
+                    // Removido o uso de previousBackStackEntry para evitar crash
+                    onSuccess()
                 } else {
                     Log.e("CadastroPetFragment", "Erro ao salvar pet: ${response.errorBody()?.string()}")
                     toast("Erro ao salvar pet", requireContext())

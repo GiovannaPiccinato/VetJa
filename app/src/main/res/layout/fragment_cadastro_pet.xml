@@ -139,28 +139,28 @@
     <Button
         android:id="@+id/buttonAvancarCadastroPet"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/light_blue"
         android:text="@string/avancar"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageEspecieGato" />
 
     <Button
         android:id="@+id/buttonVoltarEdit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="32dp"
-        android:layout_marginBottom="32dp"
         android:backgroundTint="@color/light_blue"
         android:text="@string/voltar"
         android:textColor="@color/white"
         app:cornerRadius="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/buttonAvancarCadastroPet" />
+        app:layout_constraintEnd_toStartOf="@+id/buttonAvancarCadastroPet"
+        app:layout_constraintTop_toBottomOf="@+id/imageEspecieCachorro" />
 
     <ImageView
         android:id="@+id/imageEspecieCachorro"

@@ -1,7 +1,6 @@
 package com.example.vetJa.fragments
 
 import android.annotation.SuppressLint
-import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -15,25 +14,19 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.vetJa.R
 import com.example.vetJa.adapters.PetAdapter
 import com.example.vetJa.databinding.FragmentPetListBinding
-import com.example.vetJa.models.Pet.Pet
 import com.example.vetJa.models.Pet.PetDTO
-import com.example.vetJa.models.user.User
 import com.example.vetJa.models.user.UserDTO
-import com.example.vetJa.models.user.UserResponse
 import com.example.vetJa.retroClient.RetrofitClient
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import kotlin.collections.addAll
-import kotlin.text.clear
 
 class ListPetFragment : Fragment() {
     private lateinit var binding: FragmentPetListBinding
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: PetAdapter
     private val pet = mutableListOf<PetDTO>()
-    private var user: UserDTO ?= null
-
+    private var user: UserDTO? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -48,7 +41,19 @@ class ListPetFragment : Fragment() {
         Log.d("ListPetFragment", "onViewCreated chamado")
 
         binding.addPet.setOnClickListener {
-            criarPet()
+            // vai para CadastroPetFragment
+            val fragment = CadastroPetFragment()
+
+            // Bundle com parâmetro indicando fora do fluxo de cadastro convencional
+            val bundle = Bundle()
+            bundle.putBoolean("foraFluxoCadastro", true)
+            fragment.arguments = bundle
+
+            // Troca o fragmento
+            parentFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         recyclerView = binding.rvPetList
@@ -199,5 +204,4 @@ class ListPetFragment : Fragment() {
     private fun criarPet() {
         findNavController().navigate(R.id.action_listPetFragment_to_cadastroPetFragment)
     }
-
 }
