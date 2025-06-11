@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat.startActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.vetJa.R
 import com.example.vetJa.models.service.Service
+import androidx.core.net.toUri
+import java.net.URLEncoder
 
 class ServicoAdapter(private val servicos: List<Service>) :
     RecyclerView.Adapter<ServicoAdapter.ServicoViewHolder>() {
@@ -37,19 +40,12 @@ class ServicoAdapter(private val servicos: List<Service>) :
                     notifyItemChanged(selectedPosition)
 
                     // Abrir WhatsApp com link personalizado
-                    val link = servico.link ?: return@setOnClickListener
-                    val uri = Uri.parse(link)
+                    val link = "Olá, gostaria de saber mais sobre ${servico.nome}"
+                    val msgCodificada = URLEncoder.encode(link, "UTF-8")
+                    val url = "https://wa.me/message/GI7NF6M3VMVWD1?text=$msgCodificada"
 
-                    val intent = Intent(Intent.ACTION_VIEW)
-                    intent.data = uri
-                    //intent.setPackage("com.whatsapp")
-
-                    // Verifica se o WhatsApp está instalado
-                    if (intent.resolveActivity(context.packageManager) != null) {
-                        context.startActivity(intent)
-                    } else {
-                        Toast.makeText(context, "WhatsApp não está instalado", Toast.LENGTH_SHORT).show()
-                    }
+                    val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                    context.startActivity(intent)
                 }
             }
         }
